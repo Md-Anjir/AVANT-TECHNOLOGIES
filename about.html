@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | AVANT TECHNOLOGIES</title>
+<meta name="description" content="Learn about Avant Technologies — our story, mission, vision and why industrial and enterprise clients choose us to build their critical infrastructure.">
+<link rel="icon" type="image/png" href="images/Avant Titel logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/universal.css">
+
+<!-- ============================================================
+     PAGE-SPECIFIC STYLES — About Us
+     ============================================================ -->
+<style>
+  .about-hero{ min-height:64vh;}
+
+  .overview-wrap{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:64px; align-items:start; }
+  @media(max-width:860px){ .overview-wrap{ grid-template-columns:1fr; gap:32px; } }
+  .overview-index{ font-family:var(--font-mono); font-size:.8rem; color:var(--text-700); position:sticky; top:120px; }
+
+  .mv-grid{ display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+  @media(max-width:700px){ .mv-grid{ grid-template-columns:1fr; } }
+  .mv-card{ padding:40px; border-radius:var(--radius-lg); position:relative; overflow:hidden; }
+  .mv-card.mission{ background:linear-gradient(160deg, var(--panel-700) 0%, var(--panel-600) 100%); border:1px solid var(--line-700); }
+  .mv-card.vision{ background:var(--panel-700); border:1px solid var(--line-700); }
+  .mv-card .mv-icon{ width:52px; height:52px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-weight:700; margin-bottom:24px; }
+  .mv-card.mission .mv-icon{ background:rgba(95,116,136,.15); color:var(--amber-500); }
+  .mv-card.vision .mv-icon{ background:rgba(63,110,114,.15); color:var(--teal-500); }
+
+  .benefits-list{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line-700); border:1px solid var(--line-700); border-radius:var(--radius-md); overflow:hidden; }
+  @media(max-width:700px){ .benefits-list{ grid-template-columns:1fr; } }
+  .benefit-item{ background:var(--navy-900); padding:32px; }
+  .benefit-item .bi-num{ font-family:var(--font-mono); font-size:.78rem; color:var(--amber-500); letter-spacing:.08em; }
+  .benefit-item h3{ margin-top:12px; margin-bottom:10px; font-size:1.15rem; }
+
+  .timeline{ border-left:1px solid var(--line-700); padding-left:32px; margin-left:8px; }
+  .timeline-item{ position:relative; padding-bottom:36px; }
+  .timeline-item:last-child{ padding-bottom:0; }
+  .timeline-item::before{ content:""; position:absolute; left:-37px; top:4px; width:9px; height:9px; border-radius:50%; background:var(--amber-500); box-shadow:0 0 0 4px var(--navy-900), 0 0 0 5px var(--line-700); }
+  .timeline-item .yr{ font-family:var(--font-mono); font-size:.8rem; color:var(--amber-500); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-inner">
+    <a href="index.html" >
+      <span ><img src="images/Avant logo Transparent BG.png" alt="" style="width: 130px;"></span>
+    </a>
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero about-hero">
+    <img src="images/hero/hero-about.svg" alt="" class="hero-bg" aria-hidden="true">
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <p class="eyebrow reveal">About Avant Technologies</p>
+      <h1 class="h1 hero-title reveal reveal-delay-1">Built by engineers.<br>Trusted by operators.</h1>
+      <p class="lede mt-24 reveal reveal-delay-2">Recent technological advances have driven massive economic transformations and disruptions worldwide. Quietly observing this dynamic landscape from one corner of Bangladesh, Avant Technologies has emerged as a pioneer in surveillance systems and integrated solutions. Founded in 2015 in Dhaka, the capital of Bangladesh, Avant Technologies began its journey as a technology-oriented firm. Over the years, it has firmly established its presence in the country's technological sector, offering high-tech products and superior security solutions and services. The company has successfully collaborated with key government bodies, including the Bangladesh Police, Dhaka North City Corporation (DNCC), the Ministry of Home Affairs (MOHA), Border Guard Bangladesh (BGB), and Bangladesh Prison. Avant Technologies has also partnered with leading financial institutions, providing clients with a comprehensive range of cybersecurity, surveillance systems, and software solutions.</p>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="section" id="overview">
+    <div class="container overview-wrap">
+      <div class="overview-index reveal">
+        <p>SEC.01</p>
+        <p class="mt-8" style="color:var(--text-500);">Company&nbsp;Overview</p>
+      </div>
+      <div>
+        <p class="eyebrow reveal">Who We Are</p>
+        <h2 class="h2 reveal reveal-delay-1">A single partner for energy, power and IT.</h2>
+        <p class="lede mt-24 reveal reveal-delay-2">Avant Technologies was founded on a simple premise: the systems that generate power, move it, and run on it shouldn't be handled by three different vendors. We bring renewable energy generation, power infrastructure and IT infrastructure under one engineering team — reducing handoffs, tightening timelines, and giving clients a single point of accountability from feasibility study to commissioning.</p>
+        <p class="mt-16 reveal reveal-delay-2">Today our teams operate across utility-scale solar and wind, substation and transmission builds, and mission-critical data center and network deployments — serving utilities, industrial operators, and enterprise clients who cannot afford downtime.</p>
+
+        <div class="timeline mt-48 reveal reveal-delay-3">
+          <div class="timeline-item">
+            <span class="yr">2012</span>
+            <h3 class="h3 mt-8" style="font-size:1.1rem;">Founded as a power infrastructure contractor</h3>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2017</span>
+            <h3 class="h3 mt-8" style="font-size:1.1rem;">Expanded into utility-scale renewable energy</h3>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">2021</span>
+            <h3 class="h3 mt-8" style="font-size:1.1rem;">Launched dedicated IT infrastructure division</h3>
+          </div>
+          <div class="timeline-item">
+            <span class="yr">Today</span>
+            <h3 class="h3 mt-8" style="font-size:1.1rem;">180+ projects delivered across three disciplines</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION & VISION -->
+  <section class="section" style="background:var(--navy-800);" id="mission-vision">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Why We Exist</p>
+        <h2 class="h2">Mission &amp; Vision</h2>
+      </div>
+      <div class="mv-grid">
+        <div class="mv-card mission reveal">
+          <div class="mv-icon">M</div>
+          <h3 class="h3">Our Mission</h3>
+          <p class="mt-16">To design, build and operate infrastructure that is safer, more resilient and more sustainable than what came before — delivered with the discipline our clients' operations demand.</p>
+        </div>
+        <div class="mv-card vision reveal reveal-delay-1">
+          <div class="mv-icon">V</div>
+          <h3 class="h3">Our Vision</h3>
+          <p class="mt-16">A future where every industrial operation runs on integrated, low-carbon energy and power systems backed by IT infrastructure built to the same engineering standard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="section" id="benefits">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Why Avant</p>
+        <h2 class="h2">Benefits of working with us</h2>
+      </div>
+
+      <div class="benefits-list reveal">
+        <div class="benefit-item">
+          <div class="bi-num">01</div>
+          <h3>Single Point of Accountability</h3>
+          <p>One engineering team across energy, power and IT means no finger-pointing between vendors.</p>
+        </div>
+        <div class="benefit-item">
+          <div class="bi-num">02</div>
+          <h3>In-House Engineering</h3>
+          <p>Design, procurement and construction are managed internally, keeping quality and schedule under our control.</p>
+        </div>
+        <div class="benefit-item">
+          <div class="bi-num">03</div>
+          <h3>Safety-First Delivery</h3>
+          <p>Every site operates under a zero-incident target, with certified safety leads on every project.</p>
+        </div>
+        <div class="benefit-item">
+          <div class="bi-num">04</div>
+          <h3>Transparent Reporting</h3>
+          <p>Live project dashboards keep stakeholders informed from groundbreaking to commissioning.</p>
+        </div>
+        <div class="benefit-item">
+          <div class="bi-num">05</div>
+          <h3>Long-Term Support</h3>
+          <p>Our relationship doesn't end at handover — we offer O&amp;M contracts for the systems we build.</p>
+        </div>
+        <div class="benefit-item">
+          <div class="bi-num">06</div>
+          <h3>Regional Expertise</h3>
+          <p>Deep familiarity with local permitting, grid codes and labor markets accelerates every phase.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html">
+          <span style="padding: 10px;" ><img src="images/Avant logo Transparent BG.png" alt="" style="width: 130px;"></span>
+        </a>
+        <p>Engineering renewable energy, power and IT infrastructure systems for the industries that keep the world running.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="X / Twitter">X</a>
+          <a href="#" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html#renewable">Renewable Energy</a></li>
+          <li><a href="services.html#power">Power Infrastructure</a></li>
+          <li><a href="services.html#it-infrastructure">IT Infrastructure</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>House-5, Road-8/A, Nikunja-1, Dhaka-1229</li>
+          <li><a href="mailto:info@avanttechbd.com">info@avanttechbd.com</a></li>
+          <li><a href="tel:+880 2-41040429">+880 2-41040429</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span class="current-year">2026</span> Avant Technologies. All rights reserved.</span>
+      <a href="#top" class="back-to-top" aria-label="Back to top">↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects | AVANT TECHNOLOGIES</title>
+<meta name="description" content="Browse Avant Technologies' project portfolio across renewable energy, power infrastructure and IT infrastructure.">
+<link rel="icon" type="image/png" href="images/Avant Titel logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/universal.css">
+
+<!-- ============================================================
+     PAGE-SPECIFIC STYLES — Projects
+     ============================================================ -->
+<style>
+  .projects-hero{ min-height:56vh; }
+
+  .filter-bar{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:44px; }
+  .filter-btn{
+    padding:10px 20px; border:1px solid var(--line-700); border-radius:2px;
+    font-family:var(--font-mono); font-size:.82rem; letter-spacing:.03em; color:var(--text-300);
+    transition:all .3s var(--ease);
+  }
+  .filter-btn:hover{ border-color:var(--amber-500); color:var(--text-100); }
+  .filter-btn.is-active{ background:var(--amber-500); border-color:var(--amber-500); color:var(--ink-900); }
+
+  .project-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+  @media(max-width:900px){ .project-grid{ grid-template-columns:1fr 1fr; } }
+  @media(max-width:600px){ .project-grid{ grid-template-columns:1fr; } }
+
+  .project-card{
+    border:1px solid var(--line-700); border-radius:var(--radius-md); overflow:hidden; background:var(--panel-700);
+    transition:opacity .3s var(--ease), transform .3s var(--ease), border-color .3s var(--ease);
+  }
+  .project-card:hover{ border-color:var(--amber-500); transform:translateY(-6px); }
+  .project-card img{ width:100%; height:200px; object-fit:cover; }
+  .project-card-body{ padding:24px; }
+  .project-card-body .pc-meta{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+  .project-card-body p.desc{ font-size:.92rem; margin-top:8px; }
+  .project-card-foot{ display:flex; justify-content:space-between; align-items:center; margin-top:18px; padding-top:16px; border-top:1px solid var(--line-700); font-family:var(--font-mono); font-size:.76rem; color:var(--text-700); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-inner">
+    <a href="index.html" >
+      <span ><img src="images/Avant logo Transparent BG.png" alt="" style="width: 130px;"></span>
+    </a>
+    <nav class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero projects-hero">
+    <img src="images/hero/hero-projects.svg" alt="" class="hero-bg" aria-hidden="true">
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <p class="eyebrow reveal">Portfolio</p>
+      <h1 class="h1 hero-title reveal reveal-delay-1">Deployments across<br>three disciplines.</h1>
+      <p class="lede mt-24 reveal reveal-delay-2">A look at the renewable energy, power and IT infrastructure projects our teams have delivered.</p>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Filter tabs -->
+      <div class="filter-bar reveal" role="tablist" aria-label="Filter projects by category">
+        <button class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">All Projects</button>
+        <button class="filter-btn" data-filter="renewable" role="tab" aria-selected="false">Renewable Energy</button>
+        <button class="filter-btn" data-filter="power" role="tab" aria-selected="false">Power Infrastructure</button>
+        <button class="filter-btn" data-filter="it" role="tab" aria-selected="false">IT Infrastructure</button>
+      </div>
+
+      <!-- Project grid -->
+      <div class="project-grid">
+
+        <article class="project-card reveal" data-category="renewable">
+          <img src="images/projects/project-solar-farm.svg" alt="Meridian Solar Farm project photo placeholder">
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-amber">Renewable Energy</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
+            <h3 class="h3" style="font-size:1.2rem;">Meridian Solar Farm</h3>
+            <p class="desc">48 MW utility-scale solar installation with integrated battery storage, commissioned ahead of schedule.</p>
+            <div class="project-card-foot"><span>Location: Rajshahi</span><span>48 MW</span></div>
+          </div>
+        </article>
+
+        <article class="project-card reveal reveal-delay-1" data-category="renewable">
+          <img src="images/projects/project-wind-grid.svg" alt="Coastal Wind Array project photo placeholder">
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-amber">Renewable Energy</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
+            <h3 class="h3" style="font-size:1.2rem;">Coastal Wind Array</h3>
+            <p class="desc">22-turbine onshore wind farm with full grid interconnection and SCADA monitoring.</p>
+            <div class="project-card-foot"><span>Location: Cox's Bazar</span><span>66 MW</span></div>
+          </div>
+        </article>
+
+        <article class="project-card reveal reveal-delay-2" data-category="power">
+          <img src="images/projects/project-substation.svg" alt="Northgrid Substation Upgrade project photo placeholder">
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-teal">Power Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
+            <h3 class="h3" style="font-size:1.2rem;">Northgrid Substation Upgrade</h3>
+            <p class="desc">Full modernization of a regional 220kV substation, switchyard and protection systems.</p>
+            <div class="project-card-foot"><span>Location: Chattogram</span><span>220kV</span></div>
+          </div>
+        </article>
+
+        <article class="project-card reveal data-category" data-category="power">
+          <img src="images/projects/project-transmission.svg" alt="Apex Transmission Line project photo placeholder">
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-teal">Power Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2023</span></div>
+            <h3 class="h3" style="font-size:1.2rem;">Apex Transmission Line</h3>
+            <p class="desc">64km high-voltage transmission corridor connecting two regional distribution networks.</p>
+            <div class="project-card-foot"><span>Location: Sylhet</span><span>64 km</span></div>
+          </div>
+        </article>
+
+        <article class="project-card reveal reveal-delay-1" data-category="it">
+          <img src="images/projects/project-datacenter.svg" alt="Strata Tier-III Data Center project photo placeholder">
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
+            <h3 class="h3" style="font-size:1.2rem;">Strata Tier-III Data Center</h3>
+            <p class="desc">Ground-up build of a 4,200 sqft enterprise data center with N+1 redundancy.</p>
+            <div class="project-card-foot"><span>Location: Dhaka</span><span>Tier III</span></div>
+          </div>
+        </article>
+
+        <article class="project-card reveal reveal-delay-2" data-category="it">
+          <img src="images/projects/project-network.svg" alt="Enterprise Network Rollout project photo placeholder">
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2023</span></div>
+            <h3 class="h3" style="font-size:1.2rem;">Enterprise Network Rollout</h3>
+            <p class="desc">Multi-site network architecture and cabling infrastructure for a 12-facility industrial client.</p>
+            <div class="project-card-foot"><span>Location: Multi-site</span><span>12 sites</span></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html">
+          <span style="padding: 10px;" ><img src="images/Avant logo Transparent BG.png" alt="" style="width: 130px;"></span>
+        </a>
+        <p>Engineering renewable energy, power and IT infrastructure systems for the industries that keep the world running.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="X / Twitter">X</a>
+          <a href="#" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html#renewable">Renewable Energy</a></li>
+          <li><a href="services.html#power">Power Infrastructure</a></li>
+          <li><a href="services.html#it-infrastructure">IT Infrastructure</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>House-5, Road-8/A, Nikunja-1, Dhaka-1229</li>
+          <li><a href="mailto:info@avanttechbd.com">info@avanttechbd.com</a></li>
+          <li><a href="tel:+880 2-41040429">+880 2-41040429</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span class="current-year">2026</span> Avant Technologies. All rights reserved.</span>
+      <a href="#top" class="back-to-top" aria-label="Back to top">↑</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

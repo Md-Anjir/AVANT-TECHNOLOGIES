@@ -1,0 +1,38 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+    
+    <defs>
+      <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#F4F6F8"/>
+        <stop offset="100%" stop-color="#EAEEF2"/>
+      </linearGradient>
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#DEE3E8" stroke-width="1"/>
+      </pattern>
+    </defs>
+    
+    <rect width="1600" height="900" fill="url(#bg)"/>
+    <rect width="1600" height="900" fill="url(#grid)"/>
+    
+<path d="M0 180 L1600 140" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 290 L1600 250" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 400 L1600 360" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 510 L1600 470" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 620 L1600 580" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 730 L1600 690" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/>
+<g opacity="0.9">
+  <path d="M-50 500 C 400 450, 700 600, 1000 500 S 1400 350, 1700 400" fill="none" stroke="#3F6E72" stroke-width="2" opacity="0.85"/>
+    <circle r="4" fill="#3F6E72">
+      <animateMotion dur="6s" begin="0.3s" repeatCount="indefinite" path="M-50 500 C 400 450, 700 600, 1000 500 S 1400 350, 1700 400"/>
+    </circle>
+</g>
+<g stroke="#5F7488" stroke-width="1.5" opacity="0.5">
+  <circle cx="1200" cy="300" r="120" fill="none"/>
+  <circle cx="1200" cy="300" r="80" fill="none"/>
+</g>
+
+    
+    <g stroke="#5F7488" stroke-width="2.5" fill="none" opacity="0.9">
+      <path d="M24 52 V24 H52"/>
+      <path d="M1548 24 H1576 V52"/>
+      <path d="M1576 848 V876 H1548"/>
+      <path d="M52 876 H24 V848"/>
+    </g>
+    
+    <text x="40" y="868" font-family="'IBM Plex Mono', monospace" font-size="13" letter-spacing="2" fill="#7C8791">SEC.01</text>
+    <text x="1560" y="868" text-anchor="end" font-family="'IBM Plex Mono', monospace" font-size="13" letter-spacing="2" fill="#7C8791">AVANT / COMPANY-PROFILE</text>
+    </svg>

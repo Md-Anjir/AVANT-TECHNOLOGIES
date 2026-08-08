@@ -1,0 +1,39 @@
+<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+    
+    <defs>
+      <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#F4F6F8"/>
+        <stop offset="100%" stop-color="#EAEEF2"/>
+      </linearGradient>
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#DEE3E8" stroke-width="1"/>
+      </pattern>
+    </defs>
+    
+    <rect width="1600" height="900" fill="url(#bg)"/>
+    <rect width="1600" height="900" fill="url(#grid)"/>
+    
+<path d="M0 150 L1600 110" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 260 L1600 220" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 370 L1600 330" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 480 L1600 440" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 590 L1600 550" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 700 L1600 660" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/>
+<g opacity="0.9">
+  <path d="M-50 700 C 300 650, 500 500, 800 480 S 1300 300, 1700 250" fill="none" stroke="#5F7488" stroke-width="2" opacity="0.85"/>
+    <circle r="4" fill="#5F7488">
+      <animateMotion dur="6s" begin="0s" repeatCount="indefinite" path="M-50 700 C 300 650, 500 500, 800 480 S 1300 300, 1700 250"/>
+    </circle>
+  <path d="M-50 300 C 300 350, 600 200, 900 260 S 1300 500, 1700 550" fill="none" stroke="#3F6E72" stroke-width="2" opacity="0.85"/>
+    <circle r="4" fill="#3F6E72">
+      <animateMotion dur="7s" begin="1s" repeatCount="indefinite" path="M-50 300 C 300 350, 600 200, 900 260 S 1300 500, 1700 550"/>
+    </circle>
+</g>
+<circle cx="800" cy="450" r="3" fill="#202A33" opacity="0.6"/>
+
+    
+    <g stroke="#5F7488" stroke-width="2.5" fill="none" opacity="0.9">
+      <path d="M24 52 V24 H52"/>
+      <path d="M1548 24 H1576 V52"/>
+      <path d="M1576 848 V876 H1548"/>
+      <path d="M52 876 H24 V848"/>
+    </g>
+    
+    <text x="40" y="868" font-family="'IBM Plex Mono', monospace" font-size="13" letter-spacing="2" fill="#7C8791">SEC.00</text>
+    <text x="1560" y="868" text-anchor="end" font-family="'IBM Plex Mono', monospace" font-size="13" letter-spacing="2" fill="#7C8791">AVANT / GRID-OVERVIEW</text>
+    </svg>
