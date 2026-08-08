@@ -11,7 +11,7 @@
 :root{
   /* Core palette — white background, brand slate-blue (matches logo #8294A7) */
   --navy-900:#FFFFFF;   /* page background */
-  --navy-800:#F4F6F8;   /* alt background */
+  --navy-800:#c9e0eb;   /* alt background */
   --panel-700:#FBFCFD;  /* card / panel surfaces */
   --panel-600:#EEF1F3;  /* elevated panel / hover */
   --line-700:#DEE3E8;   /* hairline borders, grid lines */

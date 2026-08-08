@@ -1,38 +1,40 @@
-<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
-    
-    <defs>
-      <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#F4F6F8"/>
-        <stop offset="100%" stop-color="#EAEEF2"/>
-      </linearGradient>
-      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#DEE3E8" stroke-width="1"/>
-      </pattern>
-    </defs>
-    
-    <rect width="1600" height="900" fill="url(#bg)"/>
-    <rect width="1600" height="900" fill="url(#grid)"/>
-    
-<path d="M0 210 L1600 170" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 320 L1600 280" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 430 L1600 390" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 540 L1600 500" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 650 L1600 610" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 760 L1600 720" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/>
-<g opacity="0.9">
-  <path d="M-50 250 C 350 300, 650 150, 950 220 S 1350 420, 1700 380" fill="none" stroke="#5F7488" stroke-width="2" opacity="0.85"/>
-    <circle r="4" fill="#5F7488">
-      <animateMotion dur="5s" begin="0s" repeatCount="indefinite" path="M-50 250 C 350 300, 650 150, 950 220 S 1350 420, 1700 380"/>
-    </circle>
-  <path d="M-50 650 C 350 600, 700 700, 1000 620 S 1400 480, 1700 520" fill="none" stroke="#3F6E72" stroke-width="2" opacity="0.85"/>
-    <circle r="4" fill="#3F6E72">
-      <animateMotion dur="6.5s" begin="0.6s" repeatCount="indefinite" path="M-50 650 C 350 600, 700 700, 1000 620 S 1400 480, 1700 520"/>
-    </circle>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1600 900" style="enable-background:new 0 0 1600 900;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#D4F3FF;}
+	.st1{opacity:0.9;}
+	.st2{opacity:0.85;fill:none;stroke:#5F7488;stroke-width:2;enable-background:new    ;}
+	.st3{fill:#5F7488;}
+	.st4{opacity:0.85;fill:none;stroke:#3F6E72;stroke-width:2;enable-background:new    ;}
+	.st5{fill:#3F6E72;}
+	.st6{fill:none;stroke:#5F7488;stroke-width:2.5;}
+	.st7{fill:#7C8791;}
+	.st8{font-family:'CourierNewPSMT';}
+	.st9{font-size:13px;}
+</style>
+<rect class="st0" width="1600" height="900"/>
+<g class="st1">
+	<path class="st2" d="M-50,250c400,50,700-100,1000-30s400,200,750,160"/>
+	<circle class="st3" cx="0" cy="0" r="4">
+	
+		<animateMotion  accumulate="none" additive="replace" begin="0s" calcMode="paced" dur="5s" fill="remove" path="M-50 250 C 350 300, 650 150, 950 220 S 1350 420, 1700 380" repeatCount="indefinite" restart="always">
+		</animateMotion>
+	</circle>
+	<path class="st4" d="M-50,650c400-50,750,50,1050-30s400-140,700-100"/>
+	<circle class="st5" cx="0" cy="0" r="4">
+	
+		<animateMotion  accumulate="none" additive="replace" begin="0.6s" calcMode="paced" dur="6.5s" fill="remove" path="M-50 650 C 350 600, 700 700, 1000 620 S 1400 480, 1700 520" repeatCount="indefinite" restart="always">
+		</animateMotion>
+	</circle>
 </g>
-
-    
-    <g stroke="#5F7488" stroke-width="2.5" fill="none" opacity="0.9">
-      <path d="M24 52 V24 H52"/>
-      <path d="M1548 24 H1576 V52"/>
-      <path d="M1576 848 V876 H1548"/>
-      <path d="M52 876 H24 V848"/>
-    </g>
-    
-    <text x="40" y="868" font-family="'IBM Plex Mono', monospace" font-size="13" letter-spacing="2" fill="#7C8791">SEC.02</text>
-    <text x="1560" y="868" text-anchor="end" font-family="'IBM Plex Mono', monospace" font-size="13" letter-spacing="2" fill="#7C8791">AVANT / CAPABILITIES</text>
-    </svg>
+<g class="st1">
+	<path class="st6" d="M24,52V24h28"/>
+	<path class="st6" d="M1548,24h28v28"/>
+	<path class="st6" d="M1576,848v28h-28"/>
+	<path class="st6" d="M52,876H24v-28"/>
+</g>
+<text transform="matrix(1 0 0 1 40 868)" class="st7 st8 st9">SEC.02</text>
+<text transform="matrix(1 0 0 1 1363.9746 868)" class="st7 st8 st9">AVANT / CAPABILITIES</text>
+</svg>

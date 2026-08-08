@@ -1,39 +1,40 @@
-<svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
-    
-    <defs>
-      <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#F4F6F8"/>
-        <stop offset="100%" stop-color="#EAEEF2"/>
-      </linearGradient>
-      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#DEE3E8" stroke-width="1"/>
-      </pattern>
-    </defs>
-    
-    <rect width="1600" height="900" fill="url(#bg)"/>
-    <rect width="1600" height="900" fill="url(#grid)"/>
-    
-<path d="M0 150 L1600 110" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 260 L1600 220" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 370 L1600 330" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 480 L1600 440" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 590 L1600 550" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/><path d="M0 700 L1600 660" stroke="#DCE3E9" stroke-width="1" opacity="0.5"/>
-<g opacity="0.9">
-  <path d="M-50 700 C 300 650, 500 500, 800 480 S 1300 300, 1700 250" fill="none" stroke="#5F7488" stroke-width="2" opacity="0.85"/>
-    <circle r="4" fill="#5F7488">
-      <animateMotion dur="6s" begin="0s" repeatCount="indefinite" path="M-50 700 C 300 650, 500 500, 800 480 S 1300 300, 1700 250"/>
-    </circle>
-  <path d="M-50 300 C 300 350, 600 200, 900 260 S 1300 500, 1700 550" fill="none" stroke="#3F6E72" stroke-width="2" opacity="0.85"/>
-    <circle r="4" fill="#3F6E72">
-      <animateMotion dur="7s" begin="1s" repeatCount="indefinite" path="M-50 300 C 300 350, 600 200, 900 260 S 1300 500, 1700 550"/>
-    </circle>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1600 900" style="enable-background:new 0 0 1600 900;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#E9F3FF;}
+	.st1{opacity:0.9;}
+	.st2{opacity:0.85;fill:none;stroke:#5F7488;stroke-width:2;enable-background:new    ;}
+	.st3{fill:#5F7488;}
+	.st4{opacity:0.85;fill:none;stroke:#3F6E72;stroke-width:2;enable-background:new    ;}
+	.st5{fill:#3F6E72;}
+	.st6{fill:none;stroke:#5F7488;stroke-width:2.5;}
+	.st7{fill:#7C8791;}
+	.st8{font-family:'CourierNewPSMT';}
+	.st9{font-size:13px;}
+</style>
+<rect class="st0" width="1600" height="900"/>
+<g class="st1">
+	<path class="st2" d="M-50,700c350-50,550-200,850-220s500-180,900-230"/>
+	<circle class="st3" cx="0" cy="0" r="4">
+	
+		<animateMotion  accumulate="none" additive="replace" begin="0s" calcMode="paced" dur="6s" fill="remove" path="M-50 700 C 300 650, 500 500, 800 480 S 1300 300, 1700 250" repeatCount="indefinite" restart="always">
+		</animateMotion>
+	</circle>
+	<path class="st4" d="M-50,300c350,50,650-100,950-40s400,240,800,290"/>
+	<circle class="st5" cx="0" cy="0" r="4">
+	
+		<animateMotion  accumulate="none" additive="replace" begin="1s" calcMode="paced" dur="7s" fill="remove" path="M-50 300 C 300 350, 600 200, 900 260 S 1300 500, 1700 550" repeatCount="indefinite" restart="always">
+		</animateMotion>
+	</circle>
 </g>
-<circle cx="800" cy="450" r="3" fill="#202A33" opacity="0.6"/>
-
-    
-    <g stroke="#5F7488" stroke-width="2.5" fill="none" opacity="0.9">
-      <path d="M24 52 V24 H52"/>
-      <path d="M1548 24 H1576 V52"/>
-      <path d="M1576 848 V876 H1548"/>
-      <path d="M52 876 H24 V848"/>
-    </g>
-    
-    <text x="40" y="868" font-family="'IBM Plex Mono', monospace" font-size="13" letter-spacing="2" fill="#7C8791">SEC.00</text>
-    <text x="1560" y="868" text-anchor="end" font-family="'IBM Plex Mono', monospace" font-size="13" letter-spacing="2" fill="#7C8791">AVANT / GRID-OVERVIEW</text>
-    </svg>
+<g class="st1">
+	<path class="st6" d="M24,52V24h28"/>
+	<path class="st6" d="M1548,24h28v28"/>
+	<path class="st6" d="M1576,848v28h-28"/>
+	<path class="st6" d="M52,876H24v-28"/>
+</g>
+<text transform="matrix(1 0 0 1 40 868)" class="st7 st8 st9">SEC.00</text>
+<text transform="matrix(1 0 0 1 1354.1733 868)" class="st7 st8 st9">AVANT / GRID-OVERVIEW</text>
+</svg>
