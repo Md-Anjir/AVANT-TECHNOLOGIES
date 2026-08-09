@@ -84,9 +84,11 @@
   .dash-gauge::before{ content:attr(data-label); width:74px; height:74px; border-radius:50%; background:var(--panel-700); display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:.95rem; color:var(--text-100); }
 
   /* ---- Clients marquee ---- */
-  .clients-viewport{ overflow:hidden; border-top:1px solid var(--line-700); border-bottom:1px solid var(--line-700); padding-block:40px; }
+  .clients-viewport{ overflow:hidden; 
+    /* border-top:1px solid var(--line-700); border-bottom:1px solid var(--line-700);  */
+    padding-block:40px; }
   .clients-track{ display:flex; align-items:center; gap:72px; width:max-content; animation:scroll-x 26s linear infinite; }
-  .clients-track img{ height:74px; width:auto; opacity:.65; transition:opacity .3s, filter .3s; }
+  .clients-track img{ height:90px; width:auto; opacity:.65; transition:opacity .3s, filter .3s; }
   .clients-track img:hover{ opacity:1;}
   @keyframes scroll-x{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 </style>
@@ -139,8 +141,8 @@
           <div class="lab">Years in Operation</div>
         </div>
         <div class="hero-stat">
-          <div class="num"><span class="counter" data-target="320" data-suffix="MW">0</span></div>
-          <div class="lab">Energy Capacity Built</div>
+          <div class="num"><span class="counter" data-target="100" data-suffix="M$">0</span></div>
+          <div class="lab">Total Project Value</div>
         </div>
         <div class="hero-stat">
           <div class="num"><span class="counter" data-target="99" data-suffix="%">0</span></div>
@@ -323,29 +325,35 @@
     </div>
     <div class="clients-viewport">
       <div class="clients-track">
-        <img src="images/clients/BD Govt.webp" alt="Goverment of Bangladesh">
+        <img src="images/clients/DDM.png" alt="DDM">
         <img src="images/clients/Home Mnister.png" alt="Home Minister of Bangladesh">
         <img src="images/clients/Bangladesh_Police_Emblem.svg.webp" alt="Bangladesh Police">
+        <img src="images/clients/SpecialBranch.png" alt="Special Branch">
         <img src="images/clients/BD Army.png" alt="Bangladesh Army">
-        <img src="images/clients/BD Navy.png" alt="bangladesh Navy">
         <img src="images/clients/BGB.svg" alt="Border Gaurd Bangladesh">
+        <img src="images/clients/Bangladesh_Ansar.svg" alt="Ansar">
         <img src="images/clients/DNCC.svg" alt="DNCC">
+        <img src="images/clients/SCC.webp" alt="SCC">
         <img src="images/clients/DSCC.svg" alt="DSCC">
         <img src="images/clients/SSF.svg" alt="Spacial Sequrity Force">
+        <img src="images/clients/BUP.webp" alt="BUP">
         <img style="height: 40Px;" src="images/clients/Transrail.webp" alt="Transrail">
-        <img src="images/clients/NTMC.png" alt="NTMC">
+        <img src="images/clients/PGCB.png" alt="PGCB">
         <!-- duplicated set for seamless marquee loop -->
-        <img src="images/clients/BD Govt.webp" alt="Goverment of Bangladesh">
+        <img src="images/clients/DDM.png" alt="DDM">
         <img src="images/clients/Home Mnister.png" alt="Home Minister of Bangladesh" aria-hidden="true">
         <img src="images/clients/Bangladesh_Police_Emblem.svg.webp" alt="Bangladesh Police" aria-hidden="true">
+        <img src="images/clients/Bangladesh_Ansar.svg" alt="Ansar">
         <img src="images/clients/BD Army.png" alt="Bangladesh Army">
-        <img src="images/clients/BD Navy.png" alt="bangladesh Navy">
         <img src="images/clients/BGB.svg" alt="Border Gaurd Bangladesh" aria-hidden="true">
+        <img src="images/clients/SpecialBranch.png" alt="Special Branch">
         <img src="images/clients/DNCC.svg" alt="DNCC">
         <img src="images/clients/DSCC.svg" alt="DSCC">
+        <img src="images/clients/SCC.webp" alt="SCC">
         <img src="images/clients/SSF.svg" alt="Spacial Sequrity Force">
+        <img src="images/clients/PGCB.png" alt="PGCB">
         <img style="height: 40Px;" src="images/clients/Transrail.webp" alt="Transrail">
-        <img src="images/clients/NTMC.png" alt="NTMC">
+        <img src="images/clients/BUP.webp" alt="BUP">
       </div>
     </div>
   </section>
@@ -364,9 +372,7 @@
         </a>
         <p>Engineering renewable energy, power and IT infrastructure systems for the industries that keep the world running.</p>
         <div class="footer-social">
-          <a href="#" aria-label="LinkedIn">in</a>
-          <a href="#" aria-label="X / Twitter">X</a>
-          <a href="#" aria-label="YouTube">YT</a>
+          <a href="https://www.linkedin.com/company/m-s-avant-technologies/" aria-label="LinkedIn">in</a>
         </div>
       </div>
       <div class="footer-col">
@@ -377,6 +383,7 @@
           <li><a href="services.html">Services</a></li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="assets/Avant_Technologies_Company_Profile.pdf" download style="color:var(--amber-500); font-weight:600;">↓ Company Profile (PDF)</a></li>
         </ul>
       </div>
       <div class="footer-col">
