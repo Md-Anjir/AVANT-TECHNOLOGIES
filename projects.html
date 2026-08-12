@@ -54,20 +54,61 @@
   .filter-btn:hover{ border-color:var(--amber-500); color:var(--text-100); }
   .filter-btn.is-active{ background:var(--amber-500); border-color:var(--amber-500); color:var(--ink-900); }
 
+  /* Project Grid Setup */
   .project-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
   @media(max-width:900px){ .project-grid{ grid-template-columns:1fr 1fr; } }
   @media(max-width:600px){ .project-grid{ grid-template-columns:1fr; } }
 
+  /* Project Card Flex Structure for perfect alignment */
   .project-card{
-    border:1px solid var(--line-700); border-radius:var(--radius-md); overflow:hidden; background:var(--panel-700);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border:1px solid var(--line-700); 
+    border-radius:var(--radius-md); 
+    overflow:hidden; 
+    background:var(--panel-700);
     transition:opacity .3s var(--ease), transform .3s var(--ease), border-color .3s var(--ease);
   }
   .project-card:hover{ border-color:var(--amber-500); transform:translateY(-6px); }
-  .project-card img{ width:100%; height:200px; object-fit:cover; }
-  .project-card-body{ padding:24px; }
+
+  /* Fully Responsive Portrait Image View */
+  .project-card-img-wrap {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    background: var(--navy-800);
+  }
+  .project-card img{ 
+    width:100%; 
+    height:100%; 
+    object-fit:cover;
+    object-position: center;
+    display: block;
+  }
+
+  /* Card Body Flex to Push Footer to Bottom */
+  .project-card-body{ 
+    padding:24px; 
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
   .project-card-body .pc-meta{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
-  .project-card-body p.desc{ font-size:.92rem; margin-top:8px; }
-  .project-card-foot{ display:flex; justify-content:space-between; align-items:center; margin-top:18px; padding-top:16px; border-top:1px solid var(--line-700); font-family:var(--font-mono); font-size:.76rem; color:var(--text-700); }
+  .project-card-body p.desc{ font-size:.92rem; margin-top:8px; line-height: 1.5; }
+
+  /* Fixed Bottom Alignment for Location and Quantity */
+  .project-card-foot{ 
+    display:flex; 
+    justify-content:space-between; 
+    align-items:center; 
+    margin-top:auto; 
+    padding-top:16px; 
+    border-top:1px solid var(--line-700); 
+    font-family:var(--font-mono); 
+    font-size:.76rem; 
+    color:var(--text-700); 
+  }
   
   /* Tag for security Solutions */
   .tag-security { color: #E0554F; border-color: rgba(224, 85, 79, 0.4); }
@@ -127,8 +168,10 @@
       <div class="project-grid">
 
         <!-- Renewable Projects -->
-         <article class="project-card reveal-left reveal-delay-1" data-category="renewable">
-          <img src="images/projects/BTS Tower Solar Picture 1.jpeg" alt="Solar Equipment for BTS tower">
+        <article class="project-card reveal-left reveal-delay-1" data-category="renewable">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/BTS Tower Solar Picture 1.jpeg" alt="Solar Equipment for BTS tower">
+          </div>
           <div class="project-card-body">
             <div class="pc-meta"><span class="tag tag-amber">Renewable Energy</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
             <h3 class="h3" style="font-size:1.2rem;">Solar Equipment for BTS tower</h3>
@@ -138,7 +181,9 @@
         </article>
 
         <article class="project-card reveal-left reveal-delay-2" data-category="renewable">
-          <img src="images/projects/Trend Setter Solar Picture 1.png" alt="Sustainable Energy Deployment for Trend Setters">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/Trend Setter Solar Picture 1.png" alt="Sustainable Energy Deployment for Trend Setters">
+          </div>
           <div class="project-card-body">
             <div class="pc-meta"><span class="tag tag-amber">Renewable Energy</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
             <h3 class="h3" style="font-size:1.2rem;">Rooftop solar in Factory</h3>
@@ -148,7 +193,9 @@
         </article>
 
         <article class="project-card reveal-left reveal-delay-2" data-category="renewable">
-          <img src="images/projects/Avant Office Picture 1.jpeg" alt="Solar System for Avant Technologies">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/Avant Office Picture 1.jpeg" alt="Solar System for Avant Technologies">
+          </div>
           <div class="project-card-body">
             <div class="pc-meta"><span class="tag tag-amber">Renewable Energy</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
             <h3 class="h3" style="font-size:1.2rem;">Solar System for Avant Technologies</h3>
@@ -159,7 +206,9 @@
 
         <!-- Power Projects -->
         <article class="project-card reveal-right reveal-delay-1" data-category="power">
-          <img src="images/projects/Project J Picture 1.jpeg" alt="Jamuna River Crossing Transmission Line">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/Project J Picture 1.jpeg" alt="Jamuna River Crossing Transmission Line">
+          </div>
           <div class="project-card-body">
             <div class="pc-meta"><span class="tag tag-teal">Power Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
             <h3 class="h3" style="font-size:1.2rem;">Jamuna River Crossing Transmission Line</h3>
@@ -169,7 +218,9 @@
         </article>
 
         <article class="project-card reveal-left reveal-delay-2" data-category="power">
-          <img src="images/projects/NAOGAON-BAGMARA I 32KV Picture1.jpg" alt="32KV DC TRANSMISSION LINE">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/NAOGAON-BAGMARA I 32KV Picture1.jpg" alt="32KV DC TRANSMISSION LINE">
+          </div>
           <div class="project-card-body">
             <div class="pc-meta"><span class="tag tag-teal">Power Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2023</span></div>
             <h3 class="h3" style="font-size:1.2rem;">32KV DC TRANSMISSION LINE</h3>
@@ -180,7 +231,9 @@
 
         <!-- IT Projects -->
         <article class="project-card reveal-right reveal-delay-3" data-category="it">
-          <img src="images/projects/DNCC1 Picture 1.jpeg" alt="DNCC Monitoring Center">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/DNCC1 Picture 1.jpeg" alt="DNCC Monitoring Center">
+          </div>
           <div class="project-card-body">
             <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
             <h3 class="h3" style="font-size:1.2rem;">Strata Tier-III Data Center</h3>
@@ -190,7 +243,21 @@
         </article>
 
         <article class="project-card reveal-right reveal-delay-3" data-category="it">
-          <img src="images/projects/DNCC1 Picture 2.jpeg" alt="DNCC Data Center">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/DNCC1 Picture 2.jpeg" alt="DNCC Data Center">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
+            <h3 class="h3" style="font-size:1.2rem;">Strata Tier-III Data Center</h3>
+            <p class="desc">Ground-up build of a 4,200 sqft enterprise data center with N+1 redundancy.</p>
+            <div class="project-card-foot"><span>Location: Dhaka</span><span>Tier III</span></div>
+          </div>
+        </article>
+
+        <article class="project-card reveal-right reveal-delay-3" data-category="it">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/DDM Picture 1.jpeg" alt="Department of Disaster Management Data Center">
+          </div>
           <div class="project-card-body">
             <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
             <h3 class="h3" style="font-size:1.2rem;">Strata Tier-III Data Center</h3>
@@ -201,9 +268,11 @@
 
         <!-- Security / Defense Projects -->
         <article class="project-card reveal-left reveal-delay-1" data-category="security">
-          <img src="images/projects/Anti Drone Picture1.jpeg" alt="KAPAN ANTI-DRONE SYSTEM">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/Anti Drone Picture1.jpeg" alt="KAPAN ANTI-DRONE SYSTEM">
+          </div>
           <div class="project-card-body">
-            <div class="pc-meta"><span class="tag tag-amber">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
             <h3 class="h3" style="font-size:1.2rem;">ANTI-DRONE SYSTEM</h3>
             <p class="desc">Drone detection radar, electro-optic system, and RF jammer are integrated on a single mast on the vehicle to ensure maximum operational usage of the system. RF/DF systems and omni-directional jammer will be separately mounted on the vehicle. Masts are integrated into the vehicle.</p>
             <div class="project-card-foot"><span>Location: State Guest House Jamuna</span><span><b>1 Pcs</b></span></div>
@@ -211,9 +280,11 @@
         </article>
 
         <article class="project-card reveal-left reveal-delay-1" data-category="security">
-          <img src="images/projects/CCV Picture 1.jpg" alt="CCV-Katmerchilar- KHAN-Ⅱ">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/CCV Picture 1.jpg" alt="CCV-Katmerchilar- KHAN-Ⅱ">
+          </div>
           <div class="project-card-body">
-            <div class="pc-meta"><span class="tag tag-amber">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
             <h3 class="h3" style="font-size:1.2rem;">CCV-Katmerchilar- KHAN-Ⅱ</h3>
             <p class="desc">Drone detection radar, electro-optic system, and RF jammer are integrated on a single mast on the vehicle to ensure maximum operational usage of the system. RF/DF systems and omni-directional jammer will be separately mounted on the vehicle. Masts are integrated into the vehicle.</p>
             <div class="project-card-foot"><span>Location: State Guest House Jamuna</span><span><b>1 Pcs</b></span></div>
@@ -221,12 +292,26 @@
         </article>
 
         <article class="project-card reveal-left reveal-delay-1" data-category="security">
-          <img src="images/projects/Portable Surveillance Tower Picture 1.jpg" alt="Portable Surveillance Tower">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/Portable Surveillance Tower Picture 1.jpg" alt="Portable Surveillance Tower">
+          </div>
           <div class="project-card-body">
-            <div class="pc-meta"><span class="tag tag-amber">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
             <h3 class="h3" style="font-size:1.2rem;">Portable Surveillance Tower</h3>
             <p class="desc">A command center on a specially designed van or truck. It has all the capabilities of a command center on wheels, can be deployed near disaster sites or in remote areas as required. Extremely helpful for the fast responder. for Bangladesh Police.</p>
             <div class="project-card-foot"><span>Client: Bangladesh Police</span><span><b>2 Pcs</b></span></div>
+          </div>
+        </article>
+
+        <article class="project-card reveal-left reveal-delay-1" data-category="security">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/Bullet Proof jacket Picture 1.png" alt="Bullet Proof Jacket">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
+            <h3 class="h3" style="font-size:1.2rem;">Bullet Proof Jacket</h3>
+            <p class="desc">High-level protective gear designed for law enforcement and military personnel. Provides superior protection against ballistic threats while maintaining mobility and comfort.</p>
+            <div class="project-card-foot"><span>Client: SSF</span><span><b>50 Pcs</b></span></div>
           </div>
         </article>
 
