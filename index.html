@@ -16,44 +16,119 @@
 <link rel="stylesheet" href="css/universal.css">
 
 <!-- ============================================================
-     PAGE-SPECIFIC STYLES — Home
-     Edit freely without touching universal.css
+     PAGE-SPECIFIC STYLES & DUAL-SIDE SLIDE SCROLL ANIMATIONS
      ============================================================ -->
 <style>
-  /* ---- Hero ---- */
-  .home-hero{ min-height:94vh; }
+  /* ---- Dynamic Two-Side Slide Animations ---- */
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1), transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1), transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-left.is-visible,
+  .reveal-right.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Stagger Delays */
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.22s; }
+  .reveal-delay-3 { transition-delay: 0.34s; }
+  .reveal-delay-4 { transition-delay: 0.46s; }
+
+  /* ---- Hero Background Animation ---- */
+  .home-hero { 
+    position: relative; 
+    min-height: 94vh; 
+    display: flex; 
+    align-items: flex-end; 
+    background: #0d131a; 
+    overflow: hidden; 
+  }
+  .hero-bg-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(84, 103, 121, 0.35) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(63, 110, 114, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(130, 148, 167, 0.15) 0%, transparent 60%);
+    filter: blur(50px);
+    animation: heroPulse 12s ease-in-out infinite alternate;
+  }
+  @keyframes heroPulse {
+    0% { transform: scale(1) translate(0, 0); }
+    50% { transform: scale(1.08) translate(-2%, 2%); }
+    100% { transform: scale(1.04) translate(2%, -2%); }
+  }
+
   .hero-stats{ display:grid; grid-template-columns:repeat(4, 1fr); gap:24px; margin-top:48px; padding-top:32px; border-top:1px solid var(--line-700); width:100%; }
   .hero-stat .num{ font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--amber-500); }
   .hero-stat .lab{ font-family:var(--font-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-500); margin-top:4px; }
 
   /* ---- Services summary ---- */
-  .svc-summary-card { display: flex; flex-direction: column; border: 1px solid var(--line-700); border-radius: var(--radius-md); overflow: hidden; background: var(--panel-700); width: 100%; transition: transform .35s var(--ease), border-color .35s var(--ease); }
-  .svc-summary-card:hover { transform: translateY(-6px); border-color: var(--amber-500); }
+  .svc-summary-card { 
+    display: flex; 
+    flex-direction: column; 
+    border: 1px solid var(--line-700); 
+    border-radius: var(--radius-md); 
+    overflow: hidden; 
+    background: var(--panel-700); 
+    width: 100%; 
+    transition: transform .4s cubic-bezier(0.16, 1, 0.3, 1), border-color .4s var(--ease), box-shadow .4s var(--ease); 
+  }
+  .svc-summary-card:hover { 
+    transform: translateY(-8px); 
+    border-color: var(--amber-500); 
+    box-shadow: 0 16px 32px rgba(0,0,0,0.06);
+  }
   
-  /* Image wrapper for standardized dimensions */
   .card-image-wrapper { width: 100%; height: 220px; overflow: hidden; background-color: var(--line-700); }
-  .card-image-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  /* Text content area */
+  .card-image-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s var(--ease); }
+  .svc-summary-card:hover .card-image-wrapper img { transform: scale(1.06); }
+  
   .card-content { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
   .svc-summary-card .num{ font-family:var(--font-mono); font-size:.8rem; color:var(--text-700); }
   .svc-summary-card h3{ margin-top:14px; margin-bottom:10px; }
   .svc-summary-card a.svc-link{ display:inline-flex; align-items:center; gap:8px; margin-top:auto; padding-top:18px; font-family:var(--font-mono); font-size:.9rem; color:var(--teal-500); font-weight: bold; }
-  .svc-summary-card a.svc-link:hover{ font-size:1rem; color:var(--teal-500); }
   .svc-summary-card a.svc-link .arrow{ transition:transform .3s var(--ease); }
-  .svc-summary-card:hover a.svc-link .arrow{ transform:translateX(4px); }
+  .svc-summary-card:hover a.svc-link .arrow{ transform:translateX(6px); }
 
-  /* ---- Projects showcase (image cards) ---- */
-  .showcase-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-  @media(max-width:900px){ .showcase-grid{ grid-template-columns:1fr 1fr; } }
-  @media(max-width:600px){ .showcase-grid{ grid-template-columns:1fr; } }
-  .showcase-card{ border:1px solid var(--line-700); border-radius:var(--radius-md); overflow:hidden; background:var(--panel-700); transition:transform .35s var(--ease), border-color .35s var(--ease); }
-  .showcase-card:hover{ transform:translateY(-6px); border-color:var(--amber-500); }
-  .showcase-card img{ width:100%; height:190px; object-fit:cover; }
-  .showcase-card-body{ padding:22px; }
-  .showcase-card-body .tag{ margin-bottom:12px; }
+  /* ---- Projects Infinite Portrait Slider ---- */
+  .project-slider-viewport { overflow: hidden; width: 100%; padding-block: 20px; }
+  .project-slider-track { display: flex; align-items: center; gap: 24px; width: max-content; animation: image-chain-scroll 35s linear infinite; }
+  .project-slider-track:hover { animation-play-state: paused; }
+  
+  .project-slide-img { 
+    width: 260px; 
+    height: 380px; 
+    aspect-ratio: 3 / 4;
+    object-fit: cover; 
+    border-radius: var(--radius-md); 
+    border: 1px solid var(--line-700); 
+    transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
+    flex-shrink: 0;
+  }
+  .project-slide-img:hover { transform: translateY(-8px) scale(1.02); border-color: var(--amber-500); box-shadow: 0 12px 28px rgba(0,0,0,0.12); }
+
+  @keyframes image-chain-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
 
   /* ---- Interactive GUI dashboard ---- */
-  .dash{ border:1px solid var(--line-700); border-radius:var(--radius-lg); background:var(--panel-700); overflow:hidden; }
+  .dash{ border:1px solid var(--line-700); border-radius:var(--radius-lg); background:var(--panel-700); overflow:hidden; transition: box-shadow .4s var(--ease); }
+  .dash:hover{ box-shadow:0 20px 40px rgba(0,0,0,0.05); }
   .dash-topbar{ display:flex; align-items:center; justify-content:space-between; padding:20px 28px; border-bottom:1px solid var(--line-700); flex-wrap:wrap; gap:12px; }
   .dash-topbar .dots{ display:flex; gap:6px; }
   .dash-topbar .dots span{ width:9px; height:9px; border-radius:50%; background:var(--line-700); }
@@ -67,7 +142,7 @@
   @media(max-width:820px){ .dash-panel + .dash-panel{ border-left:none; border-top:1px solid var(--line-700); } }
 
   .dash-bars{ display:flex; align-items:flex-end; gap:14px; height:180px; margin-top:24px; }
-  .dash-bar{ flex:1; background:linear-gradient(180deg, var(--amber-500), rgba(95,116,136,.15)); border-radius:3px 3px 0 0; position:relative; transform:scaleY(0); transform-origin:bottom; transition:transform 1s var(--ease); }
+  .dash-bar{ flex:1; background:linear-gradient(180deg, var(--amber-500), rgba(95,116,136,.15)); border-radius:3px 3px 0 0; position:relative; transform:scaleY(0); transform-origin:bottom; transition:transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
   .dash-bar.is-visible{ transform:scaleY(1); }
   .dash-bar span{ position:absolute; bottom:-26px; left:0; right:0; text-align:center; font-family:var(--font-mono); font-size:.68rem; color:var(--text-500); }
 
@@ -84,19 +159,17 @@
   .dash-gauge::before{ content:attr(data-label); width:74px; height:74px; border-radius:50%; background:var(--panel-700); display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:.95rem; color:var(--text-100); }
 
   /* ---- Clients marquee ---- */
-  .clients-viewport{ overflow:hidden; 
-    /* border-top:1px solid var(--line-700); border-bottom:1px solid var(--line-700);  */
-    padding-block:40px; }
+  .clients-viewport{ overflow:hidden; padding-block:40px; }
   .clients-track{ display:flex; align-items:center; gap:72px; width:max-content; animation:scroll-x 26s linear infinite; }
-  .clients-track img{ height:90px; width:auto; opacity:.65; transition:opacity .3s, filter .3s; }
-  .clients-track img:hover{ opacity:1;}
+  .clients-track img{ height:90px; width:auto; opacity:.65; transition:opacity .3s, transform .3s; }
+  .clients-track img:hover{ opacity:1; transform: scale(1.05); }
   @keyframes scroll-x{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 </style>
 </head>
 <body>
 
 <!-- ============================================================
-     HEADER / NAVIGATION — identical markup across all pages
+     HEADER / NAVIGATION
      ============================================================ -->
 <header class="site-header">
   <div class="container nav-inner">
@@ -117,21 +190,22 @@
 <main>
 
   <!-- ============================================================
-       HERO
+       HERO (SLIDES FROM LEFT & RIGHT)
        ============================================================ -->
   <section class="hero home-hero">
+    <div class="hero-bg-glow" aria-hidden="true"></div>
     <img src="images/hero/hero-home.svg" alt="" class="hero-bg" aria-hidden="true">
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="container hero-content">
-      <p class="eyebrow reveal">Renewable Energy — Power — IT Infrastructure</p>
-      <h1 class="h1 hero-title reveal reveal-delay-1">Engineering the infrastructure<br>that powers what's next.</h1>
-      <p class="lede mt-24 reveal reveal-delay-2">Avant Technologies plans, builds and operates critical energy, power and IT systems for industrial and enterprise clients — delivered on schedule, engineered to last.</p>
-      <div class="hero-foot reveal reveal-delay-3">
+      <p class="eyebrow reveal-left">Renewable Energy — Power — IT Infrastructure</p>
+      <h1 class="h1 hero-title reveal-left reveal-delay-1">Engineering the infrastructure<br>that powers what's next.</h1>
+      <p class="lede mt-24 reveal-left reveal-delay-2">Avant Technologies plans, builds and operates critical energy, power and IT systems for industrial and enterprise clients — delivered on schedule, engineered to last.</p>
+      <div class="hero-foot reveal-left reveal-delay-3">
         <a href="services.html" class="btn btn-primary">Explore Our Services</a>
         <a href="projects.html" class="btn btn-outline">View Projects</a>
       </div>
 
-      <div class="hero-stats reveal reveal-delay-4">
+      <div class="hero-stats reveal-right reveal-delay-4">
         <div class="hero-stat">
           <div class="num"><span class="counter" data-target="20">0</span>+</div>
           <div class="lab">Projects Delivered</div>
@@ -158,16 +232,16 @@
   <section class="section" id="services-summary">
     <div class="container">
       <div class="flex-between section-head" style="align-items:flex-end; flex-wrap:wrap; gap:24px;">
-        <div>
-          <p class="eyebrow reveal">What We Do</p>
-          <h2 class="h2 reveal reveal-delay-1">Three disciplines. One integrated capability.</h2>
+        <div class="reveal-left">
+          <p class="eyebrow">What We Do</p>
+          <h2 class="h2">Three disciplines. One integrated capability.</h2>
         </div>
-        <a href="services.html" class="btn btn-outline reveal reveal-delay-1">All Services</a>
+        <a href="services.html" class="btn btn-outline reveal-right">All Services</a>
       </div>
 
       <div class="grid grid-3">
-        <!-- Card 1 -->
-        <div class="card svc-summary-card reveal">
+        <!-- Card 1 (From Left) -->
+        <div class="card svc-summary-card reveal-left reveal-delay-1">
           <div class="card-image-wrapper">
             <img src="images/services/Renewable Energy.avif" alt="Renewable Energy">
           </div>
@@ -179,8 +253,8 @@
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="card svc-summary-card reveal reveal-delay-1">
+        <!-- Card 2 (From Left/Center) -->
+        <div class="card svc-summary-card reveal-left reveal-delay-2">
           <div class="card-image-wrapper">
             <img src="images/services/Power Infrastructure.jpg" alt="Power Infrastructure">
           </div>
@@ -192,8 +266,8 @@
           </div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="card svc-summary-card reveal reveal-delay-2">
+        <!-- Card 3 (From Right) -->
+        <div class="card svc-summary-card reveal-right reveal-delay-3">
           <div class="card-image-wrapper">
             <img src="images/services/IT infrastructure.jpg" alt="IT Infrastructure">
           </div>
@@ -209,43 +283,37 @@
   </section>
 
   <!-- ============================================================
-       OUR PROJECTS — SHOWCASE
+       OUR PROJECTS — INFINITE PORTRAIT SLIDER
        ============================================================ -->
   <section class="section" style="background:var(--navy-800);" id="projects-showcase">
     <div class="container">
-      <div class="flex-between section-head" style="align-items:flex-end; flex-wrap:wrap; gap:24px;">
-        <div>
-          <p class="eyebrow reveal">Selected Work</p>
-          <h2 class="h2 reveal reveal-delay-1">Projects on the ground.</h2>
+      <div class="flex-between section-head" style="align-items:flex-end; flex-wrap:wrap; gap:24px; margin-bottom:32px;">
+        <div class="reveal-left">
+          <p class="eyebrow">Selected Work</p>
+          <h2 class="h2">Projects on the ground.</h2>
         </div>
-        <a href="projects.html" class="btn btn-outline reveal reveal-delay-1">Full Portfolio</a>
+        <a href="projects.html" class="btn btn-outline reveal-right">Full Portfolio</a>
       </div>
+    </div>
 
-      <div class="showcase-grid">
-        <a href="projects.html" class="showcase-card reveal">
-          <img src="images/projects/project-solar-farm.svg" alt="Utility-scale solar farm project">
-          <div class="showcase-card-body">
-            <span class="tag tag-amber">Renewable Energy</span>
-            <h3 class="h3">Meridian Solar Farm</h3>
-            <p class="mt-8">48 MW utility-scale solar installation with integrated battery storage.</p>
-          </div>
-        </a>
-        <a href="projects.html" class="showcase-card reveal reveal-delay-1">
-          <img src="images/projects/project-substation.svg" alt="Regional substation upgrade project">
-          <div class="showcase-card-body">
-            <span class="tag tag-teal">Power Infrastructure</span>
-            <h3 class="h3">Northgrid Substation Upgrade</h3>
-            <p class="mt-8">Full modernization of a regional 220kV substation and switchyard.</p>
-          </div>
-        </a>
-        <a href="projects.html" class="showcase-card reveal reveal-delay-2">
-          <img src="images/projects/project-datacenter.svg" alt="Enterprise data center build project">
-          <div class="showcase-card-body">
-            <span class="tag" style="color:var(--text-100); border-color:var(--line-700);">IT Infrastructure</span>
-            <h3 class="h3">Strata Tier-III Data Center</h3>
-            <p class="mt-8">Ground-up build of a 4,200 sqft enterprise data center facility.</p>
-          </div>
-        </a>
+    <!-- Slider Container slides from Right -->
+    <div class="project-slider-viewport reveal-right reveal-delay-2">
+      <div class="project-slider-track" id="project-gallery-track">
+        <!-- Original Set of Images -->
+        <img class="project-slide-img" src="images/projects/BTS Tower Solar Picture 1.jpeg" alt="Project Image">
+        <img class="project-slide-img" src="images/projects/Project J Picture 1.jpeg" alt="Project Image">
+        <img class="project-slide-img" src="images/projects/Trend Setter Solar Picture 1.png" alt="Project Image">
+        <img class="project-slide-img" src="images/projects/BTS Tower Solar Picture 1.jpeg" alt="Project Image">
+        <img class="project-slide-img" src="images/projects/Project J Picture 1.jpeg" alt="Project Image">
+        <img class="project-slide-img" src="images/projects/Trend Setter Solar Picture 1.png" alt="Project Image">
+
+        <!-- Duplicated Set for Seamless Loop -->
+        <img class="project-slide-img" src="images/projects/BTS Tower Solar Picture 1.jpeg" alt="Project Image" aria-hidden="true">
+        <img class="project-slide-img" src="images/projects/Project J Picture 1.jpeg" alt="Project Image" aria-hidden="true">
+        <img class="project-slide-img" src="images/projects/Trend Setter Solar Picture 1.png" alt="Project Image" aria-hidden="true">
+        <img class="project-slide-img" src="images/projects/BTS Tower Solar Picture 1.jpeg" alt="Project Image" aria-hidden="true">
+        <img class="project-slide-img" src="images/projects/Project J Picture 1.jpeg" alt="Project Image" aria-hidden="true">
+        <img class="project-slide-img" src="images/projects/Trend Setter Solar Picture 1.png" alt="Project Image" aria-hidden="true">
       </div>
     </div>
   </section>
@@ -255,21 +323,21 @@
        ============================================================ -->
   <section class="section" id="dashboard">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="section-head reveal-left">
         <p class="eyebrow">Live Snapshot</p>
         <h2 class="h2">Portfolio at a glance.</h2>
         <p class="lede mt-16">A simplified view of how our active project base breaks down by discipline and delivery status.</p>
       </div>
 
-      <div class="dash reveal">
-        <div class="dash-topbar">
+      <div class="dash">
+        <div class="dash-topbar reveal-left">
           <div class="dots"><span></span><span></span><span></span></div>
           <span class="mono" style="font-size:.78rem; color:var(--text-500);">avant-portfolio / overview.dash</span>
           <span class="tag tag-teal">Live</span>
         </div>
 
         <div class="dash-body">
-          <div class="dash-panel">
+          <div class="dash-panel reveal-left reveal-delay-1">
             <h3 class="h3">Capacity by Discipline (MW-eq.)</h3>
             <div class="dash-bars">
               <div class="dash-bar" style="height:62%;"><span>Renewable</span></div>
@@ -288,7 +356,7 @@
             </div>
           </div>
 
-          <div class="dash-panel">
+          <div class="dash-panel reveal-right reveal-delay-2">
             <h3 class="h3 mb-16">Active Sites</h3>
             <div class="dash-row">
               <div class="dash-row-name"><span class="dot on"></span> Meridian Solar Farm</div>
@@ -320,10 +388,10 @@
        OUR CLIENTS — LOGO BANNER
        ============================================================ -->
   <section class="section-tight" id="clients">
-    <div class="container text-center reveal" style="margin-bottom:8px;">
+    <div class="container text-center reveal-left" style="margin-bottom:8px;">
       <p class="eyebrow" style="justify-content:center; font: 1em sans-serif;">Trusted By</p>
     </div>
-    <div class="clients-viewport">
+    <div class="clients-viewport reveal-right reveal-delay-1">
       <div class="clients-track">
         <img src="images/clients/DDM.png" alt="DDM">
         <img src="images/clients/Home Mnister.png" alt="Home Minister of Bangladesh">
@@ -361,7 +429,7 @@
 </main>
 
 <!-- ============================================================
-     FOOTER — identical markup across all pages
+     FOOTER (STATIC / NO ANIMATION)
      ============================================================ -->
 <footer class="site-footer">
   <div class="container">
@@ -412,8 +480,24 @@
 
 <script src="js/main.js"></script>
 <script>
-  /* Home-page-only: trigger the dashboard bar-chart animation on scroll */
+  /* Observer for Left & Right Slide Animations */
   document.addEventListener('DOMContentLoaded', function () {
+    var slideEls = document.querySelectorAll('.reveal-left, .reveal-right');
+    if ('IntersectionObserver' in window && slideEls.length) {
+      var slideObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            slideObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      slideEls.forEach(function (el) { slideObs.observe(el); });
+    } else {
+      slideEls.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+
+    /* Home-page-only: trigger the dashboard bar-chart animation on scroll */
     var bars = document.querySelectorAll('.dash-bar');
     if ('IntersectionObserver' in window && bars.length) {
       var obs = new IntersectionObserver(function (entries) {

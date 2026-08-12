@@ -14,9 +14,36 @@
 <link rel="stylesheet" href="css/universal.css">
 
 <!-- ============================================================
-     PAGE-SPECIFIC STYLES — About Us
+     PAGE-SPECIFIC STYLES & DUAL-SIDE SLIDE SCROLL ANIMATIONS
      ============================================================ -->
 <style>
+  /* ---- Dynamic Two-Side Slide Animations ---- */
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1), transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1), transform 2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-left.is-visible,
+  .reveal-right.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Stagger Delays */
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.22s; }
+  .reveal-delay-3 { transition-delay: 0.34s; }
+  .reveal-delay-4 { transition-delay: 0.46s; }
+
   .about-hero{ min-height:65vh; }
 
   .overview-wrap{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:64px; align-items:start; }
@@ -68,8 +95,6 @@
   .graphic-grid-overlay {
     position: absolute;
     inset: 0;
-    /* background-image: linear-gradient(rgba(222, 227, 232, 0.08) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(222, 227, 232, 0.08) 1px, transparent 1px); */
     background-size: 24px 24px;
   }
 
@@ -169,9 +194,9 @@
     <img src="images/hero/hero-about.svg" alt="" class="hero-bg" aria-hidden="true">
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="container hero-content">
-      <p class="eyebrow reveal">About Avant Technologies</p>
-      <h1 class="h1 hero-title reveal reveal-delay-1">Built by engineers.<br>Trusted by operators.</h1>
-      <p class="lede mt-24 reveal reveal-delay-2">Pioneering high-tech surveillance systems, renewable energy, and integrated infrastructure solutions across Bangladesh since 2015.</p>
+      <p class="eyebrow reveal-left">About Avant Technologies</p>
+      <h1 class="h1 hero-title reveal-left reveal-delay-1">Built by engineers.<br>Trusted by operators.</h1>
+      <p class="lede mt-24 reveal-left reveal-delay-2">Pioneering high-tech surveillance systems, renewable energy, and integrated infrastructure solutions across Bangladesh since 2015.</p>
     </div>
   </section>
 
@@ -179,36 +204,36 @@
   <section class="section" id="overview">
     <div class="container overview-wrap">
       
-      <!-- Left Column: Visual Badge & Interactive Animated Frame -->
-      <div class="overview-visual reveal">
+      <!-- Left Column: Visual Badge & Interactive Animated Frame (SLIDES FROM LEFT) -->
+      <div class="overview-visual reveal-left">
         <div>
           <span class="mono-badge">SEC.01</span>
           <p class="mt-8" style="color:var(--text-500); font-weight:600;">Company Overview</p>
         </div>
 
-        <div class="overview-graphic-card">
+        <div class="overview-graphic-card" style="background-image: url('images/about\ us\ img.png'); background-size: cover; background-position: center;">
           <div class="graphic-glow-bg"></div>
           <div class="graphic-grid-overlay"></div>
           
-          <div class="graphic-content">
+          <div>
             <span class="pulse-dot"></span>
             <div class="graphic-text">
-              <span class="highlight-num">12+</span>
+              <span class="highlight-num" style="color: rgb(243, 4, 4);">12+</span>
               <p>Years of Technology &amp; Infrastructure Excellence in BD</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Right Column: Content -->
-      <div>
-        <p class="eyebrow reveal">Who We Are</p>
-        <h2 class="h2 reveal reveal-delay-1">A trusted partner for integrated technology &amp; infrastructure.</h2>
-        <p class="lede mt-24 reveal reveal-delay-2">Recent technological advances have driven massive economic transformations and disruptions worldwide. Quietly observing this dynamic landscape from one corner of Bangladesh, Avant Technologies has emerged as a pioneer in surveillance systems and integrated solutions.</p>
-        <p class="mt-16 reveal reveal-delay-2">Founded in 2015 in Dhaka, the capital of Bangladesh, Avant Technologies began its journey as a technology-oriented firm. Over the years, it has firmly established its presence in the country's technological sector, offering high-tech products and superior security solutions and services.</p>
-        <p class="mt-16 reveal reveal-delay-2">The company has successfully collaborated with key government bodies, including the Bangladesh Police, Bangladesh Army, Special Security Force (SSF), Dhaka North City Corporation (DNCC), Dhaka South City Corporation (DSCC), Sylhet City Corporation (SCC), Power Grid Bangladesh PLC (PGCB), the Ministry of Home Affairs (MOHA), Border Guard Bangladesh (BGB), and Ansar &amp; VDP. Avant Technologies has also partnered with leading financial institutions, providing clients with a comprehensive range of cybersecurity, surveillance systems, and software solutions.</p>
+      <!-- Right Column: Content (SLIDES FROM RIGHT) -->
+      <div class="reveal-right">
+        <p class="eyebrow">Who We Are</p>
+        <h2 class="h2 reveal-right reveal-delay-1">A trusted partner for integrated technology &amp; infrastructure.</h2>
+        <p class="lede mt-24 reveal-right reveal-delay-2">Recent technological advances have driven massive economic transformations and disruptions worldwide. Quietly observing this dynamic landscape from one corner of Bangladesh, Avant Technologies has emerged as a pioneer in surveillance systems and integrated solutions.</p>
+        <p class="mt-16 reveal-right reveal-delay-2">Founded in 2015 in Dhaka, the capital of Bangladesh, Avant Technologies began its journey as a technology-oriented firm. Over the years, it has firmly established its presence in the country's technological sector, offering high-tech products and superior security solutions and services.</p>
+        <p class="mt-16 reveal-right reveal-delay-2">The company has successfully collaborated with key government bodies, including the Bangladesh Police, Bangladesh Army, Special Security Force (SSF), Dhaka North City Corporation (DNCC), Dhaka South City Corporation (DSCC), Sylhet City Corporation (SCC), Power Grid Bangladesh PLC (PGCB), the Ministry of Home Affairs (MOHA), Border Guard Bangladesh (BGB), and Ansar &amp; VDP. Avant Technologies has also partnered with leading financial institutions, providing clients with a comprehensive range of cybersecurity, surveillance systems, and software solutions.</p>
 
-        <div class="timeline mt-48 reveal reveal-delay-3">
+        <div class="timeline mt-48 reveal-right reveal-delay-3">
           <div class="timeline-item">
             <span class="yr">2015</span>
             <h3 class="h3 mt-8" style="font-size:1.1rem;">Founded in Dhaka as a technology-oriented firm</h3>
@@ -234,20 +259,20 @@
   <!-- MISSION & VISION -->
   <section class="section" style="background:var(--navy-800);" id="mission-vision">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="section-head reveal-left">
         <p class="eyebrow">Why We Exist</p>
         <h2 class="h2">Mission &amp; Vision</h2>
       </div>
       <div class="mv-grid">
-        <div class="mv-card mission reveal">
+        <div class="mv-card mission reveal-left reveal-delay-1">
           <div class="mv-icon">M</div>
           <h3 class="h3">Our Mission</h3>
-          <p class="mt-16">To design, build and operate infrastructure that is safer, more resilient and more sustainable than what came before — delivered with the discipline our clients' operations demand.</p>
+          <p class="mt-16">Our company has a well-defined plan to achieve a position among the world's topmost service providers being innovative IT solution provider, Our main priority is to perform our job in most efficient and effective way as well as providing an healthy environment for the employees where they can excel employee and customer oriented corporate environment.</p>
         </div>
-        <div class="mv-card vision reveal reveal-delay-1">
+        <div class="mv-card vision reveal-right reveal-delay-2">
           <div class="mv-icon">V</div>
           <h3 class="h3">Our Vision</h3>
-          <p class="mt-16">A future where every industrial operation runs on integrated, low-carbon energy and power systems backed by IT infrastructure built to the same engineering standard.</p>
+          <p class="mt-16">We aim to build a strong customer base inside and outside the country. Our job is to give our best for the satisfaction of our client through our IT based products off deals service. Moreover, we consider our clients as our long term partners, not as one.</p>
         </div>
       </div>
     </div>
@@ -256,38 +281,38 @@
   <!-- BENEFITS -->
   <section class="section" id="benefits">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="section-head reveal-left">
         <p class="eyebrow">Why Avant</p>
         <h2 class="h2">Benefits of working with us</h2>
       </div>
 
-      <div class="benefits-list reveal">
-        <div class="benefit-item">
+      <div class="benefits-list">
+        <div class="benefit-item reveal-left reveal-delay-1">
           <div class="bi-num">01</div>
           <h3>Single Point of Accountability</h3>
           <p>One engineering team across energy, power and IT means no finger-pointing between vendors.</p>
         </div>
-        <div class="benefit-item">
+        <div class="benefit-item reveal-right reveal-delay-1">
           <div class="bi-num">02</div>
           <h3>In-House Engineering</h3>
           <p>Design, procurement and construction are managed internally, keeping quality and schedule under our control.</p>
         </div>
-        <div class="benefit-item">
+        <div class="benefit-item reveal-left reveal-delay-2">
           <div class="bi-num">03</div>
           <h3>Safety-First Delivery</h3>
           <p>Every site operates under a zero-incident target, with certified safety leads on every project.</p>
         </div>
-        <div class="benefit-item">
+        <div class="benefit-item reveal-right reveal-delay-2">
           <div class="bi-num">04</div>
           <h3>Transparent Reporting</h3>
           <p>Live project dashboards keep stakeholders informed from groundbreaking to commissioning.</p>
         </div>
-        <div class="benefit-item">
+        <div class="benefit-item reveal-left reveal-delay-3">
           <div class="bi-num">05</div>
           <h3>Long-Term Support</h3>
           <p>Our relationship doesn't end at handover — we offer O&amp;M contracts for the systems we build.</p>
         </div>
-        <div class="benefit-item">
+        <div class="benefit-item reveal-right reveal-delay-3">
           <div class="bi-num">06</div>
           <h3>Regional Expertise</h3>
           <p>Deep familiarity with local permitting, grid codes and labor markets accelerates every phase.</p>
@@ -346,5 +371,24 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+  /* Observer for Left & Right Slide Animations */
+  document.addEventListener('DOMContentLoaded', function () {
+    var slideEls = document.querySelectorAll('.reveal-left, .reveal-right');
+    if ('IntersectionObserver' in window && slideEls.length) {
+      var slideObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            slideObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      slideEls.forEach(function (el) { slideObs.observe(el); });
+    } else {
+      slideEls.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+  });
+</script>
 </body>
 </html>
