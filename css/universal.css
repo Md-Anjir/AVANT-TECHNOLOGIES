@@ -189,9 +189,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .site-header{ background:rgba(255,255,255,.92); }
   .nav-toggle{ display:flex; }
   .nav-links{
-    position:fixed; inset:0 0 0 18%; top:0;
-    flex-direction:column; align-items:flex-start; justify-content:center; gap:6px;
-    background:var(--navy-800); padding:32px 24px;
+    position:absolute; inset:var(--header-h) 0 auto 50%; height:calc(50dvh - var(--header-h));
+    flex-direction:column; align-items:flex-start; justify-content:flex-start; gap:6px;
+    background:var(--navy-800); padding:2px 24px;
     border-left:1px solid var(--line-700);
     transform:translateX(100%); transition:transform var(--dur) var(--ease);
   }

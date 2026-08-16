@@ -115,8 +115,9 @@
 
   @media(max-width:600px){
     .projects-hero{ min-height:62vh; }
-    .filter-bar{ flex-wrap:nowrap; overflow-x:auto; padding-bottom:8px; margin-bottom:28px; scrollbar-width:thin; }
-    .filter-btn{ flex:0 0 auto; padding:10px 14px; font-size:.75rem; }
+    .filter-bar{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; margin-bottom:28px; }
+    .filter-btn{ width:100%; padding:10px 8px; font-size:.7rem; line-height:1.25; }
+    .filter-btn:first-child{ grid-column:1 / -1; }
     .project-grid{ gap:20px; }
     .project-card-img-wrap{ height:260px; }
     .project-card-body{ padding:20px; }
