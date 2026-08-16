@@ -272,9 +272,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .footer-social a{
   width:38px; height:38px; border:1px solid var(--line-700); border-radius:4px;
   display:flex; align-items:center; justify-content:center; font-size:1.1rem; font-family:var(--font-mono); font-weight:bold;
-  transition:all var(--dur) var(--ease); background:var(--panel-700);
+  transition:all var(--dur) var(--ease); background:rgb(69, 69, 238); color:white; font-size:1.5rem;
 }
-.footer-social a:hover{ border-color:var(--amber-500); color:var(--amber-500); }
+.footer-social a:hover{ border-color:var(--amber-500); color:white; font-size: 1.6rem;}
 .footer-bottom{
   border-top:1px solid var(--line-700); padding-block:24px;
   display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
