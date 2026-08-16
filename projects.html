@@ -112,6 +112,17 @@
   
   /* Tag for security Solutions */
   .tag-security { color: #E0554F; border-color: rgba(224, 85, 79, 0.4); }
+
+  @media(max-width:600px){
+    .projects-hero{ min-height:62vh; }
+    .filter-bar{ flex-wrap:nowrap; overflow-x:auto; padding-bottom:8px; margin-bottom:28px; scrollbar-width:thin; }
+    .filter-btn{ flex:0 0 auto; padding:10px 14px; font-size:.75rem; }
+    .project-grid{ gap:20px; }
+    .project-card-img-wrap{ height:260px; }
+    .project-card-body{ padding:20px; }
+    .project-card-body .pc-meta{ align-items:flex-start; gap:10px; }
+    .project-card-foot{ gap:10px; }
+  }
 </style>
 </head>
 <body>
@@ -128,6 +139,9 @@
       <a href="projects.html">Projects</a>
       <a href="contact.html">Contact Us</a>
     </nav>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-controls="nav-links" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -200,7 +214,7 @@
             <div class="pc-meta"><span class="tag tag-amber">Renewable Energy</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
             <h3 class="h3" style="font-size:1.2rem;">Solar System for Avant Technologies</h3>
             <p class="desc">Renewable Energy Deployment in rooftops for Avant Technologies.</p>
-            <div class="project-card-foot"><span>Location: Savar</span><span>682 KW</span></div>
+            <div class="project-card-foot"><span>Location: Dhaka</span><span>682 KW</span></div>
           </div>
         </article>
 
@@ -213,7 +227,7 @@
             <div class="pc-meta"><span class="tag tag-teal">Power Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
             <h3 class="h3" style="font-size:1.2rem;">Jamuna River Crossing Transmission Line</h3>
             <p class="desc">Power Infrastructure Deployment in Jamuna River Crossing 400KV Transmission Line for PGCB, Bangladesh.</p>
-            <div class="project-card-foot"><span>Location: Chattogram</span><span>400kV</span></div>
+            <div class="project-card-foot"><span>Location: Sirajganj</span><span>400kV</span></div>
           </div>
         </article>
 
@@ -225,7 +239,7 @@
             <div class="pc-meta"><span class="tag tag-teal">Power Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2023</span></div>
             <h3 class="h3" style="font-size:1.2rem;">32KV DC TRANSMISSION LINE</h3>
             <p class="desc">NAOGAON-BAGMARA I 32KV DC TRANSMISSION LINE- TRANSRAIL LIGHTING LIMITED - PGCB PROJECT</p>
-            <div class="project-card-foot"><span>Location: Mymensingh</span><span>1 Tower</span></div>
+            <div class="project-card-foot"><span>Location: Naogaon</span><span>1 Tower</span></div>
           </div>
         </article>
 
@@ -238,7 +252,7 @@
             <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
             <h3 class="h3" style="font-size:1.2rem;">Strata Tier-III Data Center</h3>
             <p class="desc">Ground-up build of a 4,200 sqft enterprise data center with N+1 redundancy.</p>
-            <div class="project-card-foot"><span>Location: Dhaka</span><span>Tier III</span></div>
+            <div class="project-card-foot"><span></span><span>Tier III</span></div>
           </div>
         </article>
 
@@ -250,7 +264,7 @@
             <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
             <h3 class="h3" style="font-size:1.2rem;">Strata Tier-III Data Center</h3>
             <p class="desc">Ground-up build of a 4,200 sqft enterprise data center with N+1 redundancy.</p>
-            <div class="project-card-foot"><span>Location: Dhaka</span><span>Tier III</span></div>
+            <div class="project-card-foot"><span></span><span>Tier III</span></div>
           </div>
         </article>
 
@@ -262,7 +276,7 @@
             <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
             <h3 class="h3" style="font-size:1.2rem;">Strata Tier-III Data Center</h3>
             <p class="desc">Ground-up build of a 4,200 sqft enterprise data center with N+1 redundancy.</p>
-            <div class="project-card-foot"><span>Location: Dhaka</span><span>Tier III</span></div>
+            <div class="project-card-foot"><span></span><span>Tier III</span></div>
           </div>
         </article>
 
@@ -275,7 +289,7 @@
             <div class="pc-meta"><span class="tag tag-security">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
             <h3 class="h3" style="font-size:1.2rem;">ANTI-DRONE SYSTEM</h3>
             <p class="desc">Drone detection radar, electro-optic system, and RF jammer are integrated on a single mast on the vehicle to ensure maximum operational usage of the system. RF/DF systems and omni-directional jammer will be separately mounted on the vehicle. Masts are integrated into the vehicle.</p>
-            <div class="project-card-foot"><span>Location: State Guest House Jamuna</span><span><b>1 Pcs</b></span></div>
+            <div class="project-card-foot"><span></span><span><b>1 Pcs</b></span></div>
           </div>
         </article>
 
@@ -339,6 +353,18 @@
           </div>
         </article>
 
+        <article class="project-card reveal-left reveal-delay-1" data-category="security">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/Body Guard Pro Picture 1.jpeg" alt="Body Guard Pro">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
+            <h3 class="h3" style="font-size:1.2rem;">Body Guard Pro</h3>
+            <p class="desc">Window is lowered by quick stepping of release pedal. The Guard is fully covered. Bullet Proof Window. Transportation handles for quick and easy relocation to meet changing security needs.</p>
+            <div class="project-card-foot"><span>Client: SSF</span><span><b>4 Pcs</b></span></div>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
@@ -352,7 +378,7 @@
         <a href="index.html">
           <span style="padding: 10px;"><img src="images/Avant logo Transparent BG.png" alt="Avant Technologies Logo" style="width: 130px;"></span>
         </a>
-        <p>Engineering renewable energy, power and IT infrastructure systems for the industries that keep the world running.</p>
+        <p>Engineering renewable energy, power, IT infrastructure, and security &amp; defense solutions for the industries that keep the world running.</p>
         <div class="footer-social">
           <a href="https://www.linkedin.com/company/m-s-avant-technologies/" aria-label="LinkedIn">in</a>
         </div>
@@ -374,6 +400,7 @@
           <li><a href="services.html#renewable">Renewable Energy</a></li>
           <li><a href="services.html#power">Power Infrastructure</a></li>
           <li><a href="services.html#it-infrastructure">IT Infrastructure</a></li>
+          <li><a href="services.html#security-defense">Security &amp; Defense</a></li>
         </ul>
       </div>
       <div class="footer-col">

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AVANT TECHNOLOGIES</title>
-<meta name="description" content="Avant Technologies designs, builds and operates renewable energy, power infrastructure and IT infrastructure systems for industrial and enterprise clients.">
+<meta name="description" content="Avant Technologies designs, builds and operates renewable energy, power infrastructure, IT infrastructure, and security &amp; defense solutions for industrial and enterprise clients.">
 <link rel="icon" type="image/png" href="images/Avant Titel logo.png">
 
 <!-- Fonts -->
@@ -207,6 +207,18 @@
   .clients-track img{ height:90px; width:auto; opacity:.65; transition:opacity .3s, transform .3s; }
   .clients-track img:hover{ opacity:1; transform: scale(1.05); }
   @keyframes scroll-x{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+  @media (max-width: 700px) {
+    .home-hero { min-height: 82vh; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 32px; padding-top: 24px; }
+    .hero-stat .num { font-size: 1.6rem; }
+    .card-image-wrapper { height: 200px; }
+    .project-slide-img { width: 210px; height: 300px; }
+    .project-slider-track { gap: 16px; animation-duration: 28s; }
+    .cap-card { padding: 24px; }
+    .clients-track { gap: 40px; }
+    .clients-track img { height: 62px; }
+  }
 </style>
 </head>
 <body>
@@ -227,6 +239,9 @@
       <a href="projects.html">Projects</a>
       <a href="contact.html">Contact Us</a>
     </nav>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-controls="nav-links" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -277,12 +292,12 @@
       <div class="flex-between section-head" style="align-items:flex-end; flex-wrap:wrap; gap:24px;">
         <div class="reveal-left">
           <p class="eyebrow">What We Do</p>
-          <h2 class="h2">Three disciplines. One integrated capability.</h2>
+          <h2 class="h2">Four disciplines. One integrated capability.</h2>
         </div>
         <a href="services.html" class="btn btn-outline reveal-right">All Services</a>
       </div>
 
-      <div class="grid grid-3">
+      <div class="grid grid-2">
         <!-- Card 1 (From Left) -->
         <div class="card svc-summary-card reveal-left reveal-delay-1">
           <div class="card-image-wrapper">
@@ -319,6 +334,17 @@
             <h3>IT Infrastructure</h3>
             <p>Data centers, network architecture and secure systems that keep operations running without interruption.</p>
             <a href="services.html#it-infrastructure" class="svc-link">Learn more <span class="arrow">→</span></a>
+          </div>
+        </div>
+        <div class="card svc-summary-card reveal-right reveal-delay-4">
+          <div class="card-image-wrapper">
+            <img src="images/projects/Anti Riot Truck Picture 1.jpg" alt="Security and Defense anti-drone system">
+          </div>
+          <div class="card-content">
+            <div class="num">04 / SECURITY &amp; DEFENSE</div>
+            <h3>Security &amp; Defense</h3>
+            <p>Counter-drone, surveillance, command-center and specialized vehicle solutions for critical operations.</p>
+            <a href="services.html#security-defense" class="svc-link">Learn more <span class="arrow">→</span></a>
           </div>
         </div>
       </div>
@@ -556,7 +582,7 @@
         <a href="index.html">
           <span style="padding: 10px;"><img src="images/Avant logo Transparent BG.png" alt="Avant Technologies Logo" style="width: 130px;"></span>
         </a>
-        <p>Engineering renewable energy, power and IT infrastructure systems for the industries that keep the world running.</p>
+        <p>Engineering renewable energy, power, IT infrastructure, and security &amp; defense solutions for the industries that keep the world running.</p>
         <div class="footer-social">
           <a href="https://www.linkedin.com/company/m-s-avant-technologies/" aria-label="LinkedIn">in</a>
         </div>
@@ -578,6 +604,7 @@
           <li><a href="services.html#renewable">Renewable Energy</a></li>
           <li><a href="services.html#power">Power Infrastructure</a></li>
           <li><a href="services.html#it-infrastructure">IT Infrastructure</a></li>
+          <li><a href="services.html#security-defense">Security &amp; Defense</a></li>
         </ul>
       </div>
       <div class="footer-col">

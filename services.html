@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Services | AVANT TECHNOLOGIES</title>
-<meta name="description" content="Explore Avant Technologies' core services: renewable energy, power infrastructure, and IT infrastructure — designed, built and operated end to end.">
+<meta name="description" content="Explore Avant Technologies' core services: renewable energy, power infrastructure, IT infrastructure, and security &amp; defense solutions — designed, built and operated end to end.">
 <link rel="icon" type="image/png" href="images/Avant Titel logo.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,6 +74,16 @@
   .process-step{ background:var(--navy-900); padding:24px; }
   .process-step .ps-num{ font-family:var(--font-mono); color:var(--text-700); font-size:.78rem; }
   .process-step h4{ margin-top:10px; font-size:1rem; }
+
+  @media(max-width:600px){
+    .services-hero{ min-height:78vh; }
+    .svc-block{ padding-block:52px; }
+    .svc-detail{ gap:28px; }
+    .svc-media{ border-radius:var(--radius-md); }
+    .svc-jump{ display:grid; grid-template-columns:1fr; gap:8px; }
+    .svc-jump a{ width:100%; padding:12px 14px; font-size:.75rem; }
+    .svc-feature-list{ gap:12px; margin-top:22px; }
+  }
 </style>
 </head>
 <body>
@@ -90,6 +100,9 @@
       <a href="projects.html">Projects</a>
       <a href="contact.html">Contact Us</a>
     </nav>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-controls="nav-links" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -101,12 +114,13 @@
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="container hero-content">
       <p class="eyebrow reveal-left">Our Capabilities</p>
-      <h1 class="h1 hero-title reveal-left reveal-delay-1">Three disciplines,<br>engineered as one.</h1>
-      <p class="lede mt-24 reveal-left reveal-delay-2">From generation to distribution to the systems that run on top of it — we deliver infrastructure end to end.</p>
+      <h1 class="h1 hero-title reveal-left reveal-delay-1">Four disciplines,<br>engineered as one.</h1>
+      <p class="lede mt-24 reveal-left reveal-delay-2">From generation and distribution to digital infrastructure and mission-critical security — we deliver integrated solutions end to end.</p>
       <div class="svc-jump mt-32 reveal-left reveal-delay-3">
         <a href="#renewable">01 — Renewable Energy</a>
         <a href="#power">02 — Power Infrastructure</a>
         <a href="#it-infrastructure">03 — IT Infrastructure</a>
+        <a href="#security-defense">04 — Security &amp; Defense</a>
       </div>
     </div>
   </section>
@@ -183,6 +197,30 @@
     </div>
   </section>
 
+  <!-- ============================================================
+       04 — SECURITY & DEFENSE (Content Left, Image Right)
+       ============================================================ -->
+  <section class="svc-block" id="security-defense">
+    <div class="container svc-detail reverse">
+      <div class="reveal-left">
+        <p class="eyebrow">04 / Security &amp; Defense</p>
+        <h2 class="h2">Mission-ready protection for critical operations.</h2>
+        <p class="lede mt-16">We deliver integrated security and defense solutions that strengthen situational awareness, protect critical assets, and support rapid response in complex operating environments.</p>
+
+        <div class="svc-feature-list">
+          <div class="svc-feature"><span class="fi">✓</span><p>Counter-drone detection, tracking and mitigation systems</p></div>
+          <div class="svc-feature"><span class="fi">✓</span><p>Mobile command centers and portable surveillance towers</p></div>
+          <div class="svc-feature"><span class="fi">✓</span><p>Integrated surveillance, communications and security platforms</p></div>
+          <div class="svc-feature"><span class="fi">✓</span><p>Special-purpose security and defense vehicle solutions</p></div>
+        </div>
+        <a href="contact.html" class="btn btn-primary mt-32">Discuss a Security &amp; Defense Project</a>
+      </div>
+      <div class="svc-media reveal-right reveal-delay-1">
+        <img src="images/projects/Anti Drone Picture1.jpeg" alt="Vehicle-mounted anti-drone system">
+      </div>
+    </div>
+  </section>
+
   <!-- HOW WE WORK -->
   <section class="section">
     <div class="container">
@@ -208,7 +246,7 @@
         <a href="index.html">
           <span style="padding: 10px;"><img src="images/Avant logo Transparent BG.png" alt="" style="width: 130px;"></span>
         </a>
-        <p>Engineering renewable energy, power and IT infrastructure systems for the industries that keep the world running.</p>
+        <p>Engineering renewable energy, power, IT infrastructure, and security &amp; defense solutions for the industries that keep the world running.</p>
         <div class="footer-social">
           <a href="https://www.linkedin.com/company/m-s-avant-technologies/" aria-label="LinkedIn">in</a>
         </div>
@@ -230,6 +268,7 @@
           <li><a href="services.html#renewable">Renewable Energy</a></li>
           <li><a href="services.html#power">Power Infrastructure</a></li>
           <li><a href="services.html#it-infrastructure">IT Infrastructure</a></li>
+          <li><a href="services.html#security-defense">Security &amp; Defense</a></li>
         </ul>
       </div>
       <div class="footer-col">

@@ -168,6 +168,18 @@
   .timeline-item:last-child{ padding-bottom:0; }
   .timeline-item::before{ content:""; position:absolute; left:-37px; top:4px; width:9px; height:9px; border-radius:50%; background:var(--amber-500); box-shadow:0 0 0 4px var(--navy-900), 0 0 0 5px var(--line-700); }
   .timeline-item .yr{ font-family:var(--font-mono); font-size:.8rem; color:var(--amber-500); }
+
+  @media(max-width:600px){
+    .about-hero{ min-height:68vh; }
+    .overview-visual{ position:static; gap:16px; }
+    .overview-graphic-card{ min-height:230px; padding:18px; }
+    .graphic-content{ padding:16px; }
+    .highlight-num{ font-size:1.8rem; }
+    .mv-card{ padding:28px 24px; }
+    .benefit-item{ padding:24px; }
+    .timeline{ padding-left:24px; margin-left:5px; }
+    .timeline-item::before{ left:-29px; }
+  }
 </style>
 </head>
 <body>
@@ -184,6 +196,9 @@
       <a href="projects.html">Projects</a>
       <a href="contact.html">Contact Us</a>
     </nav>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-controls="nav-links" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -330,7 +345,7 @@
         <a href="index.html">
           <span style="padding: 10px;"><img src="images/Avant logo Transparent BG.png" alt="Avant Technologies Logo" style="width: 130px;"></span>
         </a>
-        <p>Engineering renewable energy, power and IT infrastructure systems for the industries that keep the world running.</p>
+        <p>Engineering renewable energy, power, IT infrastructure, and security &amp; defense solutions for the industries that keep the world running.</p>
         <div class="footer-social">
           <a href="https://www.linkedin.com/company/m-s-avant-technologies/" aria-label="LinkedIn">in</a>
         </div>
@@ -352,6 +367,7 @@
           <li><a href="services.html#renewable">Renewable Energy</a></li>
           <li><a href="services.html#power">Power Infrastructure</a></li>
           <li><a href="services.html#it-infrastructure">IT Infrastructure</a></li>
+          <li><a href="services.html#security-defense">Security &amp; Defense</a></li>
         </ul>
       </div>
       <div class="footer-col">

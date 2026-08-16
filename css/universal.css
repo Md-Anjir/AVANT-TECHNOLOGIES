@@ -103,6 +103,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media (max-width:768px){
   .section{ padding-block:64px; }
   .section-tight{ padding-block:44px; }
+  .container{ padding-inline:18px; }
+  .section-head{ margin-bottom:36px; }
+  .lede{ font-size:1rem; }
+  .eyebrow{ font-size:.72rem; letter-spacing:.12em; gap:8px; }
+  .eyebrow::before{ width:16px; }
 }
 
 .grid{ display:grid; gap:32px; }
@@ -180,17 +185,30 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .nav-toggle.is-open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
 
 @media (max-width:860px){
+  :root{ --header-h:72px; }
+  .site-header{ background:rgba(255,255,255,.92); }
   .nav-toggle{ display:flex; }
   .nav-links{
-    position:fixed; inset:0 0 0 30%; top:0;
+    position:fixed; inset:0 0 0 18%; top:0;
     flex-direction:column; align-items:flex-start; justify-content:center; gap:6px;
-    background:var(--navy-800); padding:32px;
+    background:var(--navy-800); padding:32px 24px;
     border-left:1px solid var(--line-700);
     transform:translateX(100%); transition:transform var(--dur) var(--ease);
   }
   .nav-links.is-open{ transform:translateX(0); }
   .nav-links a{ font-size:1.3rem; width:100%; padding:14px 8px; }
   .nav-cta .btn-outline{ display:none; }
+}
+
+@media (max-width:480px){
+  .hero{ min-height:72vh; }
+  .hero-content{ padding-block:44px 48px; }
+  .hero-foot{ gap:10px; margin-top:24px; }
+  .btn{ width:100%; padding:13px 18px; }
+  .card{ padding:24px; }
+  .site-footer{ padding-top:48px; }
+  .footer-grid{ gap:28px; padding-bottom:32px; }
+  .footer-bottom{ align-items:flex-start; flex-direction:column-reverse; }
 }
 
 /* --------------------------------------------------------------------------
