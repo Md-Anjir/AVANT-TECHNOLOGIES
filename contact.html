@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact Us | AVANT TECHNOLOGIES</title>
-<meta name="description" content="Get in touch with Avant Technologies to discuss a renewable energy, power infrastructure or IT infrastructure project.">
+<meta name="description" content="Get in touch with Avant Technologies to discuss a renewable energy, power infrastructure, IT infrastructure or security project.">
 <link rel="icon" type="image/png" href="images/Avant Titel logo.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,8 +62,8 @@
   .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
   @media(max-width:520px){ .form-row{ grid-template-columns:1fr; } }
 
-  .form-status{ margin-top:8px; font-size:.9rem; min-height:24px; }
-  .form-status.is-success{ color:var(--teal-400); }
+  .form-status{ margin-top:14px; font-size:.95rem; min-height:24px; font-weight:500; }
+  .form-status.is-success{ color:var(--teal-500); }
   .form-status.is-error{ color:#E0554F; }
 
   .contact-info-card{ background:var(--panel-700); border:1px solid var(--line-700); border-radius:var(--radius-lg); padding:32px; }
@@ -80,14 +80,7 @@
       linear-gradient(90deg, var(--line-700) 1px, transparent 1px) 0 0/32px 32px,
       var(--navy-800);
   }
-  .map-placeholder .pin{
-    position:absolute; top:44%; left:52%; width:16px; height:16px; border-radius:50% 50% 50% 0;
-    background:var(--amber-500); transform:rotate(-45deg); box-shadow:0 0 0 8px rgba(95,116,136,.15);
-  }
-  .map-placeholder .cap{
-    position:absolute; bottom:16px; left:16px; font-family:var(--font-mono); font-size:.75rem; color:var(--ink-900);
-    background:rgba(95,116,136,.92); padding:6px 10px; border-radius:2px; border:1px solid var(--line-700);
-  }
+  .map-placeholder iframe{ width:100%; height:100%; border:0; }
 
   @media(max-width:600px){
     .contact-hero{ min-height:64vh; }
@@ -103,7 +96,7 @@
 <header class="site-header">
   <div class="container nav-inner">
     <a href="index.html">
-      <span><img src="images/Avant logo Transparent BG.png" alt="" style="width: 130px;"></span>
+      <span><img src="images/Avant logo Transparent BG.png" alt="Avant Technologies Logo" style="width: 130px;"></span>
     </a>
     <nav class="nav-links" id="nav-links">
       <a href="index.html">Home</a>
@@ -140,33 +133,39 @@
         <p class="eyebrow">Project Inquiry</p>
         <h2 class="h2 mb-32">Send us a message</h2>
 
-        <form id="contact-form" novalidate>
+        <form id="contact-form" action="send_mail.php" method="POST" novalidate>
           <div class="form-row">
             <div class="form-field">
               <label for="name">Full Name</label>
-              <input type="text" id="name" name="name" placeholder="Jane Doe" autocomplete="name">
+              <input type="text" id="name" name="name" placeholder="Jane Doe" autocomplete="name" required>
               <span class="field-error"></span>
             </div>
             <div class="form-field">
               <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="jane@company.com" autocomplete="email">
+              <input type="email" id="email" name="email" placeholder="jane@company.com" autocomplete="email" required>
               <span class="field-error"></span>
             </div>
           </div>
 
           <div class="form-field">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+880 1XXXXXXXXX" autocomplete="tel">
+            <span class="field-error"></span>
+          </div>
+
+          <div class="form-field">
             <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject" placeholder="Renewable energy project inquiry">
+            <input type="text" id="subject" name="subject" placeholder="Renewable / Infrastructure / Defense Inquiry" required>
             <span class="field-error"></span>
           </div>
 
           <div class="form-field">
             <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Tell us a bit about your project, timeline and location..."></textarea>
+            <textarea id="message" name="message" placeholder="Tell us a bit about your project, timeline and location..." required></textarea>
             <span class="field-error"></span>
           </div>
 
-          <button type="submit" class="btn btn-primary">Send Message</button>
+          <button type="submit" id="submitBtn" class="btn btn-primary">Send Message</button>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
       </div>
@@ -205,9 +204,8 @@
         </div>
 
         <!-- Embedded Map -->
-        <div class="map-placeholder" role="img" aria-label="Map placeholder showing the approximate location of Avant Technologies head office">
-          <span class="pin"></span>
-          <span class="cap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3117.8954962672947!2d90.41644269298111!3d23.823202199040356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c76d162f1f67%3A0x23d119fdbd95768!2sAvant%20Technologies!5e0!3m2!1sen!2sbd!4v1786175814944!5m2!1sen!2sbd" width="450" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></span>
+        <div class="map-placeholder" role="img" aria-label="Map showing location of Avant Technologies head office">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3117.8954962672947!2d90.41644269298111!3d23.823202199040356!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c76d162f1f67%3A0x23d119fdbd95768!2sAvant%20Technologies!5e0!3m2!1sen!2sbd!4v1786175814944!5m2!1sen!2sbd" width="450" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
       </div>
 
@@ -221,7 +219,7 @@
     <div class="footer-grid">
       <div>
         <a href="index.html">
-          <span style="padding: 10px;"><img src="images/Avant logo Transparent BG.png" alt="" style="width: 130px;"></span>
+          <span style="padding: 10px;"><img src="images/Avant logo Transparent BG.png" alt="Avant Technologies Logo" style="width: 130px;"></span>
         </a>
         <p>Engineering renewable energy, power, IT infrastructure, and security &amp; defense solutions for the industries that keep the world running.</p>
         <div class="footer-social">
@@ -281,6 +279,58 @@
       slideEls.forEach(function (el) { slideObs.observe(el); });
     } else {
       slideEls.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+
+    /* AJAX Mail Submission to send_mail.php */
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submitBtn');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !email || !message) {
+          formStatus.className = 'form-status is-error';
+          formStatus.textContent = 'Please complete all required fields before sending.';
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending Message...';
+        formStatus.className = 'form-status';
+        formStatus.textContent = '';
+
+        const formData = new FormData(contactForm);
+
+        try {
+          const response = await fetch('send_mail.php', {
+            method: 'POST',
+            body: formData
+          });
+
+          const result = await response.json();
+
+          if (response.ok && result.status === 'success') {
+            formStatus.className = 'form-status is-success';
+            formStatus.textContent = '✓ ' + result.message;
+            contactForm.reset();
+          } else {
+            formStatus.className = 'form-status is-error';
+            formStatus.textContent = result.message || 'Error sending message. Please try again.';
+          }
+        } catch (error) {
+          formStatus.className = 'form-status is-error';
+          formStatus.textContent = 'Network error. Please check your connection or contact us directly via phone.';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message';
+        }
+      });
     }
   });
 </script>

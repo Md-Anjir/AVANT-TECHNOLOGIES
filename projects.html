@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Projects | AVANT TECHNOLOGIES</title>
-<meta name="description" content="Browse Avant Technologies' project portfolio across renewable energy, power infrastructure, IT infrastructure, and security solutions.">
+<meta name="description" content="Browse Avant Technologies' complete project portfolio across Renewable Energy, Power Infrastructure, IT Infrastructure, and Security & Defense Solutions.">
 <link rel="icon" type="image/png" href="images/Avant Titel logo.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,7 +59,7 @@
   @media(max-width:900px){ .project-grid{ grid-template-columns:1fr 1fr; } }
   @media(max-width:600px){ .project-grid{ grid-template-columns:1fr; } }
 
-  /* Project Card Flex Structure for perfect alignment */
+  /* Project Card Flex Structure */
   .project-card{
     display: flex;
     flex-direction: column;
@@ -68,16 +68,22 @@
     border-radius:var(--radius-md); 
     overflow:hidden; 
     background:var(--panel-700);
-    transition:opacity .3s var(--ease), transform .3s var(--ease), border-color .3s var(--ease);
+    cursor: pointer;
+    transition:opacity .3s var(--ease), transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
   }
-  .project-card:hover{ border-color:var(--amber-500); transform:translateY(-6px); }
+  .project-card:hover{ 
+    border-color:var(--amber-500); 
+    transform:translateY(-6px); 
+    box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+  }
 
   /* Fully Responsive Portrait Image View */
   .project-card-img-wrap {
     width: 100%;
-    height: 320px;
+    height: 280px;
     overflow: hidden;
     background: var(--navy-800);
+    position: relative;
   }
   .project-card img{ 
     width:100%; 
@@ -85,25 +91,55 @@
     object-fit:cover;
     object-position: center;
     display: block;
+    transition: transform .4s var(--ease);
+  }
+  .project-card:hover img {
+    transform: scale(1.04);
   }
 
-  /* Card Body Flex to Push Footer to Bottom */
+  /* Card Body Flex */
   .project-card-body{ 
-    padding:24px; 
+    padding:22px; 
     display: flex;
     flex-direction: column;
     flex-grow: 1;
   }
-  .project-card-body .pc-meta{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
-  .project-card-body p.desc{ font-size:.92rem; margin-top:8px; line-height: 1.5; }
+  .project-card-body .pc-meta{ display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+  
+  /* Strict 1-Line Truncated Description on Default Card View */
+  .project-card-body p.desc{ 
+    font-size:.92rem; 
+    margin-top:8px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-500);
+  }
 
-  /* Fixed Bottom Alignment for Location and Quantity */
+  /* Read More Trigger Link */
+  .read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    font-family: var(--font-mono);
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--amber-500);
+    transition: gap .2s var(--ease);
+  }
+  .project-card:hover .read-more-btn {
+    gap: 10px;
+    color: var(--text-100);
+  }
+
+  /* Fixed Bottom Alignment */
   .project-card-foot{ 
     display:flex; 
     justify-content:space-between; 
     align-items:center; 
     margin-top:auto; 
-    padding-top:16px; 
+    padding-top:14px; 
     border-top:1px solid var(--line-700); 
     font-family:var(--font-mono); 
     font-size:.76rem; 
@@ -113,16 +149,173 @@
   /* Tag for security Solutions */
   .tag-security { color: #E0554F; border-color: rgba(224, 85, 79, 0.4); }
 
-  @media(max-width:600px){
+  /* ============================================================
+     BULLETPROOF MODAL OVERLAY STYLES
+     ============================================================ */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(13, 19, 26, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .modal-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .modal-container {
+    background: var(--panel-700);
+    border: 1px solid var(--line-700);
+    border-radius: var(--radius-lg);
+    width: 100%;
+    max-width: 860px;
+    max-height: 88vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    transform: translateY(20px) scale(0.96);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .modal-overlay.is-active .modal-container {
+    transform: translateY(0) scale(1);
+  }
+
+  .modal-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--navy-800);
+    border: 1px solid var(--line-700);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: var(--text-100);
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.2s ease;
+  }
+
+  .modal-close-btn:hover {
+    background: var(--amber-500);
+    color: var(--ink-900);
+  }
+
+  .modal-gallery {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    background: #000;
+  }
+
+  .modal-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .gallery-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--line-700);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .gallery-prev { left: 14px; }
+  .gallery-next { right: 14px; }
+
+  .gallery-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: var(--navy-800);
+    border-bottom: 1px solid var(--line-700);
+  }
+
+  .gallery-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--line-700);
+    cursor: pointer;
+  }
+
+  .gallery-dot.is-active {
+    background: var(--amber-500);
+    transform: scale(1.2);
+  }
+
+  .modal-body {
+    padding: 28px 32px;
+  }
+
+  .modal-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+    padding: 16px 20px;
+    border-top: 1px solid var(--line-700);
+    background: var(--navy-900);
+    border-radius: var(--radius-md);
+  }
+
+  .modal-meta-item .meta-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .modal-meta-item .meta-val {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-100);
+    margin-top: 4px;
+  }
+
+  @media (max-width: 600px) {
     .projects-hero{ min-height:62vh; }
     .filter-bar{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; margin-bottom:28px; }
     .filter-btn{ width:100%; padding:10px 8px; font-size:.7rem; line-height:1.25; }
     .filter-btn:first-child{ grid-column:1 / -1; }
     .project-grid{ gap:20px; }
-    .project-card-img-wrap{ height:260px; }
-    .project-card-body{ padding:20px; }
-    .project-card-body .pc-meta{ align-items:flex-start; gap:10px; }
-    .project-card-foot{ gap:10px; }
+    .project-card-img-wrap{ height:240px; }
+    .project-card-body{ padding:18px; }
+    .modal-gallery { height: 250px; }
+    .modal-body { padding: 20px; }
+    .modal-meta-grid { grid-template-columns: 1fr; gap: 12px; }
   }
 </style>
 </head>
@@ -155,7 +348,7 @@
     <div class="container hero-content">
       <p class="eyebrow reveal-left">Portfolio</p>
       <h1 class="h1 hero-title reveal-left reveal-delay-1">Deployments across<br>key disciplines.</h1>
-      <p class="lede mt-24 reveal-left reveal-delay-2">A look at the renewable energy, power, IT infrastructure, and security solutions our teams have delivered.</p>
+      <p class="lede mt-24 reveal-left reveal-delay-2">A comprehensive overview of our engineering deployments across renewable energy, power, IT infrastructure, and security solutions.</p>
 
       <div class="hero-foot reveal-left reveal-delay-3">
         <a href="assets/Avant_Technologies_Company_Profile.pdf" download class="btn btn-primary">
@@ -182,187 +375,759 @@
       <!-- Project grid -->
       <div class="project-grid">
 
-        <!-- Renewable Projects -->
-        <article class="project-card reveal-left reveal-delay-1" data-category="renewable">
+        <!-- ==================== 1. RENEWABLE ENERGY (FIRST) ==================== -->
+        
+        <!-- BTS Solar 137 Sites -->
+        <article class="project-card reveal-left reveal-delay-1" data-category="renewable"
+          data-title="Supply, Installation, Integration and Transportation of Solar Equipment for BTS/Transmission Hub Sites"
+          data-tag="Renewable Energy"
+          data-year="Running"
+          data-client="BD ARMY / Teletalk"
+          data-value="137 sites"
+          data-location="Rangamati, Khagrachhari & Bandarban"
+          data-images="images/projects/BTS Tower Solar Picture 1.jpeg"
+          data-desc="Engineering, procurement, logistics, and commissioning of standalone solar photovoltaic power systems across 137 remote BTS and transmission hub towers in Rangamati, Khagrachhari, and Bandarban. The hybrid setup integrates industrial battery banks, smart MPPT charge controllers, and heavy-duty solar arrays to deliver 24/7 off-grid green energy. This deployment ensures uninterrupted telecom coverage in off-grid border areas.">
           <div class="project-card-img-wrap">
-            <img src="images/projects/BTS Tower Solar Picture 1.jpeg" alt="Solar Equipment for BTS tower">
+            <img src="images/projects/BTS Tower Solar Picture 1.jpeg" alt="Solar BTS Hub Sites">
           </div>
           <div class="project-card-body">
-            <div class="pc-meta"><span class="tag tag-amber">Renewable Energy</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
-            <h3 class="h3" style="font-size:1.2rem;">Solar Equipment for BTS tower</h3>
-            <p class="desc">Infrastructure Development of Solar Equipment for BTS and Transmission Hub Sites in Rangamati, Khagrachhari, and Bandarban for Teletalk and the Bangladesh Army.</p>
-            <div class="project-card-foot"><span>Location: Hilly Tracks</span><span><b>137 SITES</b></span></div>
+            <div class="pc-meta"><span class="tag tag-amber">Renewable Energy</span><span class="mono muted" style="font-size:.75rem;">Running</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Solar Equipment for 137 BTS Hub Sites</h3>
+            <p class="desc">Standalone solar photovoltaic power systems across 137 remote telecom towers.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: BD ARMY</span><span><b>137 sites</b></span></div>
           </div>
         </article>
 
-        <article class="project-card reveal-left reveal-delay-2" data-category="renewable">
+        <!-- Rooftop Solar Trend Setters -->
+        <article class="project-card reveal-left reveal-delay-2" data-category="renewable"
+          data-title="Rooftop Solar in Factory"
+          data-tag="Renewable Energy"
+          data-year="2024"
+          data-client="Trend Setters Ltd."
+          data-value="682 KW Capacity"
+          data-location="Savar, Dhaka"
+          data-images="images/projects/Trend Setter Solar Picture 1.png"
+          data-desc="Sustainable Energy Deployment for Trend Setters for efficient industrial electricity consumption, lowering grid dependency, and reducing operational carbon footprint with high-yield solar modules.">
           <div class="project-card-img-wrap">
-            <img src="images/projects/Trend Setter Solar Picture 1.png" alt="Sustainable Energy Deployment for Trend Setters">
+            <img src="images/projects/Trend Setter Solar Picture 1.png" alt="Rooftop Solar">
           </div>
           <div class="project-card-body">
             <div class="pc-meta"><span class="tag tag-amber">Renewable Energy</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
-            <h3 class="h3" style="font-size:1.2rem;">Rooftop solar in Factory</h3>
-            <p class="desc">Sustainable Energy Deployment for Trend Setters for efficient use of Power.</p>
-            <div class="project-card-foot"><span>Location: Savar</span><span>682 KW</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Rooftop Solar in Factory</h3>
+            <p class="desc">Sustainable Energy Deployment for Trend Setters for efficient use of industrial power.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Location: Savar</span><span><b>682 KW</b></span></div>
           </div>
         </article>
 
-        <article class="project-card reveal-left reveal-delay-2" data-category="renewable">
+        <!-- Solar System Avant Office -->
+        <article class="project-card reveal-left reveal-delay-3" data-category="renewable"
+          data-title="Solar System for Avant Technologies"
+          data-tag="Renewable Energy"
+          data-year="2024"
+          data-client="Avant Technologies HQ"
+          data-value="Commercial Installation"
+          data-location="Dhaka"
+          data-images="images/projects/Avant Office Picture 1.jpeg"
+          data-desc="Complete rooftop solar deployment powering internal facility servers, office networks, and emergency backup power architecture with zero downtime.">
           <div class="project-card-img-wrap">
-            <img src="images/projects/Avant Office Picture 1.jpeg" alt="Solar System for Avant Technologies">
+            <img src="images/projects/Avant Office Picture 1.jpeg" alt="Solar System Avant Office">
           </div>
           <div class="project-card-body">
             <div class="pc-meta"><span class="tag tag-amber">Renewable Energy</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
-            <h3 class="h3" style="font-size:1.2rem;">Solar System for Avant Technologies</h3>
-            <p class="desc">Renewable Energy Deployment in rooftops for Avant Technologies.</p>
-            <div class="project-card-foot"><span>Location: Dhaka</span><span>682 KW</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Solar System for Avant Technologies</h3>
+            <p class="desc">Renewable Energy Deployment in rooftops for Avant Technologies Headquarters.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Location: Dhaka</span><span><b>682 KW</b></span></div>
           </div>
         </article>
 
-        <!-- Power Projects -->
-        <article class="project-card reveal-right reveal-delay-1" data-category="power">
-          <div class="project-card-img-wrap">
-            <img src="images/projects/Project J Picture 1.jpeg" alt="Jamuna River Crossing Transmission Line">
-          </div>
-          <div class="project-card-body">
-            <div class="pc-meta"><span class="tag tag-teal">Power Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
-            <h3 class="h3" style="font-size:1.2rem;">Jamuna River Crossing Transmission Line</h3>
-            <p class="desc">Power Infrastructure Deployment in Jamuna River Crossing 400KV Transmission Line for PGCB, Bangladesh.</p>
-            <div class="project-card-foot"><span>Location: Sirajganj</span><span>400kV</span></div>
-          </div>
-        </article>
+        <!-- ==================== 2. POWER INFRASTRUCTURE ==================== -->
 
-        <article class="project-card reveal-left reveal-delay-2" data-category="power">
+        <!-- Naogaon-Bagmara 132kV Line -->
+        <article class="project-card reveal-right reveal-delay-1" data-category="power"
+          data-title="NAOGAON-BAGMARA 132KV Double Circuit transmission line"
+          data-tag="Power Infrastructure"
+          data-year="2023"
+          data-client="PGCB"
+          data-value="38 Towers"
+          data-location="Naogaon - Bagmara"
+          data-images="images/projects/NAOGAON-BAGMARA I 32KV Picture1.jpg"
+          data-desc="Engineering, tower assembly, and conductor stringing assistance for the 132kV double-circuit power transmission corridor between Naogaon and Bagmara. Designed to improve grid stability, this corridor eliminates regional voltage drops and handles growing industrial loads. The infrastructure integrates standardized protection switchgear to safeguard against overcurrent and transient grid faults.">
           <div class="project-card-img-wrap">
-            <img src="images/projects/NAOGAON-BAGMARA I 32KV Picture1.jpg" alt="32KV DC TRANSMISSION LINE">
+            <img src="images/projects/NAOGAON-BAGMARA I 32KV Picture1.jpg" alt="Naogaon-Bagmara 132kV Line">
           </div>
           <div class="project-card-body">
             <div class="pc-meta"><span class="tag tag-teal">Power Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2023</span></div>
-            <h3 class="h3" style="font-size:1.2rem;">32KV DC TRANSMISSION LINE</h3>
-            <p class="desc">NAOGAON-BAGMARA I 32KV DC TRANSMISSION LINE- TRANSRAIL LIGHTING LIMITED - PGCB PROJECT</p>
-            <div class="project-card-foot"><span>Location: Naogaon</span><span>1 Tower</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Naogaon-Bagmara 132kV Transmission Line</h3>
+            <p class="desc">Engineering and assembly of 38 double-circuit power transmission towers.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: PGCB</span><span><b>38 Towers</b></span></div>
           </div>
         </article>
 
-        <!-- IT Projects -->
-        <article class="project-card reveal-right reveal-delay-3" data-category="it">
+        <!-- Kaliakoir-Mymensingh 400KV DC Line -->
+        <article class="project-card reveal-left reveal-delay-2" data-category="power"
+          data-title="Kaliakoir-Mymensingh 400KV DC Transmission Line"
+          data-tag="Power Infrastructure"
+          data-year="2023"
+          data-client="PGCB / Fujian Electric"
+          data-value="12 Towers / BDT 37.60M"
+          data-location="Kaliakoir - Mymensingh"
+          data-images="images/projects/NAOGAON-BAGMARA I 32KV Picture1.jpg"
+          data-desc="Execution of critical civil and foundation engineering for 12 high-voltage transmission towers under the 2.01 Kaliakoir–Mymensingh 400kV DC Transmission Line Project, part of the national Power Grid Network Strengthening initiative. Awarded by Fujian Electric Power Engineering Co., Ltd. with a project value of BDT 37.60 Million, the scope involved heavy structural foundation works designed to support 400kV double-circuit transmission pylons, ensuring long-term grid stability and cross-regional high-voltage power transmission.">
           <div class="project-card-img-wrap">
-            <img src="images/projects/DNCC1 Picture 1.jpeg" alt="DNCC Monitoring Center">
+            <img src="images/projects/NAOGAON-BAGMARA I 32KV Picture1.jpg" alt="Kaliakoir-Mymensingh 400KV">
           </div>
           <div class="project-card-body">
-            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
-            <h3 class="h3" style="font-size:1.2rem;">Strata Tier-III Data Center</h3>
-            <p class="desc">Ground-up build of a 4,200 sqft enterprise data center with N+1 redundancy.</p>
-            <div class="project-card-foot"><span></span><span>Tier III</span></div>
+            <div class="pc-meta"><span class="tag tag-teal">Power Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2023</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Kaliakoir-Mymensingh 400KV DC Line</h3>
+            <p class="desc">Foundation works for 12 towers under the Power Grid Network Strengthening Project.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: PGCB / Fujian</span><span><b>12 Towers</b></span></div>
           </div>
         </article>
 
-        <article class="project-card reveal-right reveal-delay-3" data-category="it">
+        <!-- 400kV Jamuna River Crossing -->
+        <article class="project-card reveal-right reveal-delay-3" data-category="power"
+          data-title="27 H/0 of Jamuna River Crossing Portion of Bogura-Kaliakair 400kV Transmission Line (Packgae-2, Lot 3 )"
+          data-tag="Power Infrastructure"
+          data-year="2026"
+          data-client="TRANSRAIL LIGHTING LIMITED / PGCB"
+          data-value="1 site"
+          data-location="Jamuna River"
+          data-images="images/projects/Project J Picture 1.jpeg,images/projects/Project J Picture 2.jpeg"
+          data-desc="Execution of the river-crossing portion of the Bogura-Kaliakair 400kV high-voltage transmission line across the Jamuna River. The project involves foundation engineering and erecting massive transmission pylons designed to endure heavy monsoon river currents, wind loads, and seismic forces. This high-capacity corridor links western and northern regional electricity grids to facilitate national power distribution.">
           <div class="project-card-img-wrap">
-            <img src="images/projects/DNCC1 Picture 2.jpeg" alt="DNCC Data Center">
+            <img src="images/projects/Project J Picture 1.jpeg" alt="400kV Jamuna River Crossing">
           </div>
           <div class="project-card-body">
-            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
-            <h3 class="h3" style="font-size:1.2rem;">Strata Tier-III Data Center</h3>
-            <p class="desc">Ground-up build of a 4,200 sqft enterprise data center with N+1 redundancy.</p>
-            <div class="project-card-foot"><span></span><span>Tier III</span></div>
+            <div class="pc-meta"><span class="tag tag-teal">Power Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2026</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">400kV Jamuna River Crossing Transmission Line</h3>
+            <p class="desc">Execution of the river-crossing portion of Bogura-Kaliakair 400kV transmission line.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: TRANSRAIL LIGHTING</span><span><b>1 site</b></span></div>
           </div>
         </article>
 
-        <article class="project-card reveal-right reveal-delay-3" data-category="it">
+        <!-- ==================== 3. SECURITY & DEFENSE SOLUTIONS ==================== -->
+
+        <!-- Road Block (35 Pcs) -->
+        <article class="project-card reveal-left reveal-delay-1" data-category="security"
+          data-title="Vehicle Barrier with Rack & Road Block"
+          data-tag="Security / Defense Solutions"
+          data-year="2021-2022"
+          data-client="Bangladesh Police & BGB"
+          data-value="35 Pcs"
+          data-location="Nationwide"
+          data-images="images/projects/Road Block Picture 1.jpeg,images/projects/Road Block Picture 2.jpeg"
+          data-desc="Deployment of heavy-duty hydraulic vehicle barrier systems integrated with automated rack mechanisms to control checkpoint perimeters. The system provides immediate physical stopping power against unauthorized or high-speed vehicle intrusions at critical high-security installations. Designed with corrosion-resistant alloys, it ensures seamless integration with access control software and allows rapid deployment during state alerts.">
           <div class="project-card-img-wrap">
-            <img src="images/projects/DDM Picture 1.jpeg" alt="Department of Disaster Management Data Center">
+            <img src="images/projects/Road Block Picture 1.jpeg" alt="Road Block">
           </div>
           <div class="project-card-body">
-            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
-            <h3 class="h3" style="font-size:1.2rem;">Strata Tier-III Data Center</h3>
-            <p class="desc">Ground-up build of a 4,200 sqft enterprise data center with N+1 redundancy.</p>
-            <div class="project-card-foot"><span></span><span>Tier III</span></div>
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense</span><span class="mono muted" style="font-size:.75rem;">2021-2022</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Road Block & Barrier Systems</h3>
+            <p class="desc">Heavy-duty hydraulic vehicle barrier systems integrated with automated rack mechanisms.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: Bangladesh Police, BGB</span><span><b>35 Pcs</b></span></div>
           </div>
         </article>
 
-        <!-- Security / Defense Projects -->
-        <article class="project-card reveal-left reveal-delay-1" data-category="security">
+        <!-- Body Worn Cameras -->
+        <article class="project-card reveal-left reveal-delay-2" data-category="security"
+          data-title="Body Worn Camera"
+          data-tag="Security / Defense Solutions"
+          data-year="2020-2026"
+          data-client="Bangladesh Police"
+          data-value="20,000 pcs"
+          data-location="Nationwide"
+          data-images="images/projects/Body Cam Picture 1.png"
+          data-desc="Large-scale supply and integration of tamper-proof body worn smart cameras for on-duty law enforcement officers across Bangladesh. The devices feature continuous high-definition video capture, encrypted night-vision recording, GPS tracking, and automated secure footage ingestion docks. This initiative establishes real-time evidence integrity, improves operational transparency, and modernizes frontline field operations.">
           <div class="project-card-img-wrap">
-            <img src="images/projects/Anti Drone Picture1.jpeg" alt="KAPAN ANTI-DRONE SYSTEM">
+            <img src="images/projects/Body Cam Picture 1.png" alt="Body Worn Cameras">
           </div>
           <div class="project-card-body">
-            <div class="pc-meta"><span class="tag tag-security">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
-            <h3 class="h3" style="font-size:1.2rem;">ANTI-DRONE SYSTEM</h3>
-            <p class="desc">Drone detection radar, electro-optic system, and RF jammer are integrated on a single mast on the vehicle to ensure maximum operational usage of the system. RF/DF systems and omni-directional jammer will be separately mounted on the vehicle. Masts are integrated into the vehicle.</p>
-            <div class="project-card-foot"><span></span><span><b>1 Pcs</b></span></div>
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense</span><span class="mono muted" style="font-size:.75rem;">2020-2026</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Body Worn Camera</h3>
+            <p class="desc">Large-scale supply and integration of tamper-proof body worn smart cameras.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: Bangladesh Police</span><span><b>20,000 pcs</b></span></div>
           </div>
         </article>
 
-        <article class="project-card reveal-left reveal-delay-1" data-category="security">
+        <!-- Mobile Surveillance Towers -->
+        <article class="project-card reveal-left reveal-delay-3" data-category="security"
+          data-title="Mobile Surveillance Tower"
+          data-tag="Security / Defense Solutions"
+          data-year="2022"
+          data-client="Bangladesh Police"
+          data-value="02 pcs"
+          data-location="Deployable"
+          data-images="images/projects/Portable Surveillance Tower Picture 1.jpg"
+          data-desc="Specialized vehicular command platforms equipped with pneumatic telescoping masts, high-altitude optical/thermal PTZ cameras, and standalone hybrid power generators. The units function as deployable command centers on wheels, capable of rapid positioning in conflict zones or disaster management grounds. They stream real-time situational feeds back to regional headquarters, providing situational awareness in high-density gatherings.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/Portable Surveillance Tower Picture 1.jpg" alt="Mobile Surveillance Towers">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense</span><span class="mono muted" style="font-size:.75rem;">2022</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Mobile Surveillance Tower</h3>
+            <p class="desc">Vehicular command platforms equipped with pneumatic telescoping masts and PTZ cameras.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: Bangladesh Police</span><span><b>02 pcs</b></span></div>
+          </div>
+        </article>
+
+        <!-- Bulletproof Jackets -->
+        <article class="project-card reveal-left reveal-delay-1" data-category="security"
+          data-title="Bulletproof Jacket"
+          data-tag="Security / Defense Solutions"
+          data-year="2022-2023"
+          data-client="BGB & SSF"
+          data-value="4,150 pcs"
+          data-location="Border Outposts & VIP Security"
+          data-images="images/projects/Bullet Proof jacket Picture 1.png"
+          data-desc="Supply of NIJ-certified high-threat ballistic protective vests tailored for tactical security details and VIP close protection operations. The vests combine multi-hit ceramic-composite armor plates with lightweight ergonomic carrier fabrics to ensure vital organ defense without restricting operator agility. Every unit underwent quality compliance testing against high-velocity rifle rounds and ballistic fragments.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/Bullet Proof jacket Picture 1.png" alt="Bulletproof Jackets">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense</span><span class="mono muted" style="font-size:.75rem;">2022-2023</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Bulletproof Jacket</h3>
+            <p class="desc">Supply of NIJ-certified high-threat ballistic protective vests for tactical security.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: BGB & SSF</span><span><b>4,150 pcs</b></span></div>
+          </div>
+        </article>
+
+        <!-- Counter-Unmanned Aerial Vehicle (CUAV) -->
+        <article class="project-card reveal-left reveal-delay-2" data-category="security"
+          data-title="Counter Unmanned Aerial Vehicle (CUAV) with Jammer"
+          data-tag="Security / Defense Solutions"
+          data-year="2023"
+          data-client="Special Branch (SB)"
+          data-value="01 pcs"
+          data-location="State Security"
+          data-images="images/projects/Anti Drone Picture 1.jpeg,images/projects/Anti Drone Picture 2.jpeg,images/projects/Anti Drone Picture 3.jpeg"
+          data-desc="Vehicle-integrated Counter-Unmanned Aerial Vehicle (CUAV) System with an integrated multi-band jammer, combining active RF/radar detection, long-range electro-optical (EO) identification and targeting cameras, and omnidirectional RF countermeasure capabilities. The system is mounted on a telescoping pneumatic mast and is designed to detect, identify, track, and counter unauthorized commercial or tactical UAVs within designated protected airspace. The platform provides an integrated counter-drone defense capability for the protection of critical sites and sensitive state movements.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/Anti Drone Picture 1.jpeg" alt="CUAV System">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense</span><span class="mono muted" style="font-size:.75rem;">2023</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">CUAV System with Integrated Jammer</h3>
+            <p class="desc">Vehicle-integrated counter-drone system combining RF/radar detection and multi-band jammers.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: Special Branch (SB)</span><span><b>01 pcs</b></span></div>
+          </div>
+        </article>
+
+        <!-- Telecom BTS Infrastructure Construction -->
+        <article class="project-card reveal-left reveal-delay-3" data-category="security"
+          data-title="BTS-Tower Telecom Infrastructure Construction"
+          data-tag="Security / Defense Solutions"
+          data-year="Running"
+          data-client="BD ARMY"
+          data-value="128 sites"
+          data-location="CHT Region"
+          data-images="images/projects/BTS Tower Solar Picture 1.jpeg"
+          data-desc="Turnkey telecommunication civil and structural deployment covering tower fabrication, mast erection, and equipment shelter installation across remote hill tracts. The project strengthens military and public communications networks by securing transmission relays in geographically challenging terrains. Each site is built with lightning protection systems and structural reinforcements to ensure continuous telecom uptime.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/BTS Tower Solar Picture 1.jpeg" alt="Telecom BTS Infrastructure">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense</span><span class="mono muted" style="font-size:.75rem;">Running</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Telecom BTS-Tower Construction</h3>
+            <p class="desc">Turnkey telecom civil deployment covering tower fabrication and mast erection across hill tracts.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: BD ARMY</span><span><b>128 sites</b></span></div>
+          </div>
+        </article>
+
+        <!-- Riot Control Vehicles (RCV) -->
+        <article class="project-card reveal-left reveal-delay-1" data-category="security"
+          data-title="Riot Control Vehicle(RCV)"
+          data-tag="Security / Defense Solutions"
+          data-year="2020"
+          data-client="BGB"
+          data-value="10 pcs"
+          data-location="Urban & Border Operations"
+          data-images="images/projects/Anti Riot Truck Picture 1.jpg"
+          data-desc="Outfitting and delivery of custom-armored Riot Control Vehicles fitted with automated high-pressure water monitors, tear-gas dispersal systems, and hydraulic front-mounted barricade clearers. The vehicle cabins are shielded with bullet-resistant composite glass and armored protective grilles to safeguard crew members. They serve as front-line units for non-lethal crowd dispersal and urban riot management.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/Anti Riot Truck Picture 1.jpg" alt="Riot Control Vehicles">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense</span><span class="mono muted" style="font-size:.75rem;">2020</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Riot Control Vehicle (RCV)</h3>
+            <p class="desc">Custom-armored Riot Control Vehicles fitted with water monitors and barricade clearers.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: BGB</span><span><b>10 pcs</b></span></div>
+          </div>
+        </article>
+
+        <!-- Central Border Surveillance Control (Polaris ATV Fleet) -->
+        <article class="project-card reveal-left reveal-delay-2" data-category="security"
+          data-title="Tactical Border Response System & Central Border Surveillance Control & Monitoring Center (ATV)"
+          data-tag="Security / Defense Solutions"
+          data-year="2020"
+          data-client="BGB"
+          data-value="120 pcs"
+          data-location="Border Outposts"
+          data-images="images/projects/ATV Picture 1.jpeg,images/projects/ATV Picture 2.jpeg"
+          data-desc="Supply, delivery, and technical commissioning of Polaris Tourer 570 (All-Terrain Vehicles) under the contract for the Establishment of Tactical Border Response System & Central Border Surveillance Control & Monitoring Center. Engineered by Polaris (USA/Poland), these tactical off-road units feature a powerful 567cc ProStar 4-stroke DOHC single-cylinder liquid-cooled engine (44 HP) with electronic fuel injection and True On-Demand AWD/2WD drivetrain. Designed with 11 inches of ground clearance, automatic PVT transmission, 4-wheel hydraulic disc brakes, and lock-and-ride cargo storage, the fleet enables rapid border reconnaissance, high-speed interception, and tactical patrol mobility across harsh, marshy, and rugged borderline terrain.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/ATV Picture 1.jpeg" alt="Polaris ATVs">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense</span><span class="mono muted" style="font-size:.75rem;">2020</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Polaris Tourer 570 ATV Fleet</h3>
+            <p class="desc">Polaris Tourer 570 All-Terrain Vehicles for Tactical Border Response &amp; Surveillance Control.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: BGB</span><span><b>120 pcs</b></span></div>
+          </div>
+        </article>
+
+        <!-- City-Wide CCTV Surveillance -->
+        <article class="project-card reveal-left reveal-delay-3" data-category="security"
+          data-title="Installation and Maintainance of CCTV Camera"
+          data-tag="Security / Defense Solutions"
+          data-year="2025-2026"
+          data-client="DNCC"
+          data-value="City-Wide Matrix"
+          data-location="Dhaka North"
+          data-images="images/projects/DNCC CCTV Picture 1.jpeg,images/projects/DNCC CCTV Picture 2.jpeg,images/projects/DNCC CCTV Picture 3.jpeg"
+          data-desc="Turnkey expansion, hardware rehabilitation, and continuous service maintenance for high-definition IP camera networks deployed throughout the Dhaka North metropolitan zone. The network links thousands of fixed, PTZ, and ANPR cameras via a dedicated optical fiber matrix into central police and municipal monitoring centers. The project maintains uptime for traffic control, crime deterrence, and urban safety oversight.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/DNCC CCTV Picture 1.jpeg" alt="City-Wide CCTV">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense</span><span class="mono muted" style="font-size:.75rem;">2025-2026</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">City-Wide CCTV Surveillance Framework</h3>
+            <p class="desc">Hardware rehabilitation and maintenance for IP camera networks throughout Dhaka North.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: DNCC</span><span><b>City-Wide</b></span></div>
+          </div>
+        </article>
+
+        <!-- Smart Security Archways & Baggage Scanners -->
+        <article class="project-card reveal-left reveal-delay-1" data-category="security"
+          data-title="Supply and installation of Smart archway & handy, portable modern baggage scanner and related services"
+          data-tag="Security / Defense Solutions"
+          data-year="2026"
+          data-client="Ministry of Home and Affairs"
+          data-value="Multi-Site Installation"
+          data-location="Secretariat & Ministry Complex"
+          data-images="images/projects/Baggage Scanners Picture 1.jpeg,images/projects/Security Archways Picture 1.jpeg"
+          data-desc="Supply, installation, and testing of intelligent multi-zone walk-through metal detection archways alongside portable dual-view X-ray baggage scanners across ministry installations. The systems feature high-discrimination threat algorithms capable of distinguishing harmless metal items from concealed weapons and explosive components. The portable design allows rapid relocation to secure temporary VIP events and high-security meetings.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/Baggage Scanners Picture 1.jpeg" alt="Baggage Scanners & Archways">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense</span><span class="mono muted" style="font-size:.75rem;">2026</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Smart Security Archways &amp; Scanners</h3>
+            <p class="desc">Multi-zone metal detection archways and dual-view X-ray baggage inspection portals.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: Ministry of Home Affairs</span><span><b>Multi-Site</b></span></div>
+          </div>
+        </article>
+
+        <!-- Explosive & Chemical Detection Systems -->
+        <article class="project-card reveal-left reveal-delay-2" data-category="security"
+          data-title="Explosive Detector & Chemical Detection Systems"
+          data-tag="Security / Defense Solutions"
+          data-year="2026"
+          data-client="Bangladesh Police"
+          data-value="Tactical Units"
+          data-location="Security Checkpoints"
+          data-images="images/projects/Body Guard Pro Picture 1.jpeg"
+          data-desc="Provision of handheld trace explosive and chemical substance detectors using ion mobility spectrometry for frontline checkpoint screening and bomb disposal squads. The devices analyze surface swabs and air samples within seconds to detect microscopic trace particles of military, commercial, and improvised explosive compounds. The lightweight, battery-powered build enables immediate field deployment.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/Body Guard Pro Picture 1.jpeg" alt="Explosive Detectors">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense</span><span class="mono muted" style="font-size:.75rem;">2026</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Portable Explosive Detector Systems</h3>
+            <p class="desc">Handheld trace explosive and chemical detectors using ion mobility spectrometry.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: Bangladesh Police</span><span><b>Tactical Units</b></span></div>
+          </div>
+        </article>
+
+        <!-- CCV Tactical Vehicle -->
+        <article class="project-card reveal-left reveal-delay-3" data-category="security"
+          data-title="CCV-Katmerchilar KHAN-II"
+          data-tag="Security / Defense Solutions"
+          data-year="2025"
+          data-client="Bangladesh Police"
+          data-value="Tactical Armored Fleet"
+          data-location="Dhaka"
+          data-images="images/projects/CCV Picture 1.jpg"
+          data-desc="Advanced armored tactical vehicle featuring high-grade ballistic protection, specialized communications mast, and riot mitigation capabilities.">
           <div class="project-card-img-wrap">
             <img src="images/projects/CCV Picture 1.jpg" alt="CCV-Katmerchilar- KHAN-Ⅱ">
           </div>
           <div class="project-card-body">
-            <div class="pc-meta"><span class="tag tag-security">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
-            <h3 class="h3" style="font-size:1.2rem;">CCV-Katmerchilar- KHAN-Ⅱ</h3>
-            <p class="desc">Drone detection radar, electro-optic system, and RF jammer are integrated on a single mast on the vehicle to ensure maximum operational usage of the system. RF/DF systems and omni-directional jammer will be separately mounted on the vehicle. Masts are integrated into the vehicle.</p>
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">CCV-Katmerchilar KHAN-Ⅱ</h3>
+            <p class="desc">Armored tactical vehicle with integrated electro-optic systems and RF jammer mast.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
             <div class="project-card-foot"><span>Client: Bangladesh Police</span><span><b>1 Pcs</b></span></div>
           </div>
         </article>
 
-        <article class="project-card reveal-left reveal-delay-1" data-category="security">
-          <div class="project-card-img-wrap">
-            <img src="images/projects/Anti Riot Truck Picture 1.jpg" alt="ANTI-RIOT TRUCKS ">
-          </div>
-          <div class="project-card-body">
-            <div class="pc-meta"><span class="tag tag-security">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
-            <h3 class="h3" style="font-size:1.2rem;">ANTI-RIOT TRUCKS</h3>
-            <p class="desc">THE VEHICLE'S FULLY ARMORED BODY AND VITAL FEATURES SUCH AS THE HYDRAULIC RAM/BARRICADE REMOVAL SYSTEM ALLOW THE VEHICLE TO ACT AS A FRONT-LINE DEFENSE IN HOSTILE SITUATIONS AND FRAGILE SCENARIOS</p>
-            <div class="project-card-foot"><span>Client: Bangladesh Army</span><span><b>10 Pcs</b></span></div>
-          </div>
-        </article>
-
-        <article class="project-card reveal-left reveal-delay-1" data-category="security">
-          <div class="project-card-img-wrap">
-            <img src="images/projects/APC Picture 1.png" alt="APC">
-          </div>
-          <div class="project-card-body">
-            <div class="pc-meta"><span class="tag tag-security">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
-            <h3 class="h3" style="font-size:1.2rem;">APC-Armed Personnel Carrier</h3>
-            <p class="desc">THE DEFINITION OF APC IS AN ABBREVIATION FOR AN ARMORED PERSONNEL CARRIER WHICH IS A VEHICLE THE MILITARY USES TO MOVE TROOPS. </p>
-            <div class="project-card-foot"><span>Client: Bangladesh Army</span><span><b>12 Pcs</b></span></div>
-          </div>
-        </article>
-
-        <article class="project-card reveal-left reveal-delay-1" data-category="security">
-          <div class="project-card-img-wrap">
-            <img src="images/projects/Portable Surveillance Tower Picture 1.jpg" alt="Portable Surveillance Tower">
-          </div>
-          <div class="project-card-body">
-            <div class="pc-meta"><span class="tag tag-security">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
-            <h3 class="h3" style="font-size:1.2rem;">Portable Surveillance Tower</h3>
-            <p class="desc">A command center on a specially designed van or truck. It has all the capabilities of a command center on wheels, can be deployed near disaster sites or in remote areas as required. Extremely helpful for the fast responder. for Bangladesh Police.</p>
-            <div class="project-card-foot"><span>Client: Bangladesh Police</span><span><b>2 Pcs</b></span></div>
-          </div>
-        </article>
-
-        <article class="project-card reveal-left reveal-delay-1" data-category="security">
-          <div class="project-card-img-wrap">
-            <img src="images/projects/Bullet Proof jacket Picture 1.png" alt="Bullet Proof Jacket">
-          </div>
-          <div class="project-card-body">
-            <div class="pc-meta"><span class="tag tag-security">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
-            <h3 class="h3" style="font-size:1.2rem;">Bullet Proof Jacket</h3>
-            <p class="desc">High-level protective gear designed for law enforcement and military personnel. Provides superior protection against ballistic threats while maintaining mobility and comfort.</p>
-            <div class="project-card-foot"><span>Client: SSF</span><span><b>50 Pcs</b></span></div>
-          </div>
-        </article>
-
-        <article class="project-card reveal-left reveal-delay-1" data-category="security">
+        <!-- Body Guard Pro -->
+        <article class="project-card reveal-left reveal-delay-1" data-category="security"
+          data-title="Body Guard Pro Portable Shield"
+          data-tag="Security / Defense Solutions"
+          data-year="2025"
+          data-client="Special Security Force (SSF)"
+          data-value="4 Deployable Units"
+          data-location="Dhaka"
+          data-images="images/projects/Body Guard Pro Picture 1.jpeg"
+          data-desc="Instant-deploy ballistic sentry shelter. Window is lowered by quick stepping of release pedal. Fully covered bulletproof cabin with easy relocation handles.">
           <div class="project-card-img-wrap">
             <img src="images/projects/Body Guard Pro Picture 1.jpeg" alt="Body Guard Pro">
           </div>
           <div class="project-card-body">
-            <div class="pc-meta"><span class="tag tag-security">Security / Defense Solutions</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
-            <h3 class="h3" style="font-size:1.2rem;">Body Guard Pro</h3>
-            <p class="desc">Window is lowered by quick stepping of release pedal. The Guard is fully covered. Bullet Proof Window. Transportation handles for quick and easy relocation to meet changing security needs.</p>
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense</span><span class="mono muted" style="font-size:.75rem;">2025</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Body Guard Pro</h3>
+            <p class="desc">Ballistic sentry shelter with rapid pedal-release bulletproof window and portable handles.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
             <div class="project-card-foot"><span>Client: SSF</span><span><b>4 Pcs</b></span></div>
+          </div>
+        </article>
+
+        <!-- ==================== 4. IT INFRASTRUCTURE ==================== -->
+
+        <!-- Vehicle Scanner Machine -->
+        <article class="project-card reveal-right reveal-delay-1" data-category="it"
+          data-title="Vehicle Scanner Machine"
+          data-tag="IT Infrastructure"
+          data-year="Completed"
+          data-client="BGB"
+          data-value="Turnkey Installation"
+          data-location="International Border Crossings"
+          data-images="images/projects/Vehicle Scanner Picture 1.jpeg,images/projects/Vehicle Scanner Picture 2.jpeg"
+          data-desc="Supply and installation of automated under-vehicle and cargo X-ray inspection portals for international border crossings. The system uses high-penetration imaging to detect hidden contraband, weapons, and structural vehicle anomalies in real time without causing traffic bottlenecks. Integrated with automatic license plate recognition software, it archives historical vehicle scan profiles into a central database.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/Vehicle Scanner Picture 1.jpeg" alt="Vehicle Scanner Machine">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">Completed</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Vehicle Scanner Machine</h3>
+            <p class="desc">Automated under-vehicle and cargo X-ray inspection portals for border crossings.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: BGB</span><span><b>Turnkey</b></span></div>
+          </div>
+        </article>
+
+        <!-- Smart Border Surveillance System (SBSS) -->
+        <article class="project-card reveal-right reveal-delay-2" data-category="it"
+          data-title="Smart Border Surveillance System (SBSS)"
+          data-tag="IT Infrastructure"
+          data-year="2016-2017"
+          data-client="BGB"
+          data-value="8 sites"
+          data-location="Border Sectors"
+          data-images="images/projects/SBSS Picture 1.jpeg,images/projects/SBSS Picture 2.jpeg,images/projects/SBSS Picture 3.jpeg"
+          data-desc="Turnkey implementation of an integrated border perimeter security matrix comprising thermal imaging sensors, seismic ground detectors, and centralized video analytics. Deployed across vulnerable borderline sectors, the system provides automated intrusion alerts to nearby command posts. The setup operates continuously over rugged border terrain to minimize manual patrol vulnerabilities.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/SBSS Picture 1.jpeg" alt="SBSS">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2016-2017</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Smart Border Surveillance System (SBSS)</h3>
+            <p class="desc">Perimeter security matrix comprising thermal sensors, seismic detectors, and analytics.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: BGB</span><span><b>8 sites</b></span></div>
+          </div>
+        </article>
+
+        <!-- Border Surveillance and Response System (BSRS) -->
+        <article class="project-card reveal-right reveal-delay-3" data-category="it"
+          data-title="Border Surveillance and Response System (BSRS)"
+          data-tag="IT Infrastructure"
+          data-year="2017-2018"
+          data-client="BGB"
+          data-value="25 sites"
+          data-location="Border Outposts"
+          data-images="images/projects/BSRS Picture 1.jpeg,images/projects/BSRS Picture 2.jpeg,images/projects/BSRS Picture 3.jpeg"
+          data-desc="Expansion of regional border monitoring capabilities across 25 high-priority border outposts. The project combines long-range PTZ day/night optical cameras, solar power backups, and wireless microwave data links connected directly to battalion headquarters. It enables border guards to track movement and direct rapid response teams to boundary breaches.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/BSRS Picture 1.jpeg" alt="BSRS">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2017-2018</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Border Surveillance and Response (BSRS)</h3>
+            <p class="desc">Long-range PTZ cameras, solar power backups, and microwave data links across 25 outposts.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: BGB</span><span><b>25 sites</b></span></div>
+          </div>
+        </article>
+
+        <!-- Emergency IT & Communication Equipment Commissioning -->
+        <article class="project-card reveal-right reveal-delay-1" data-category="it"
+          data-title="Supply & Commissioned IT Equipment for Disaster Management"
+          data-tag="IT Infrastructure"
+          data-year="Completed"
+          data-client="Disaster Management"
+          data-value="Enterprise Infrastructure"
+          data-location="Dhaka"
+          data-images="images/projects/DDM Picture 1.jpeg"
+          data-desc="Supply, network configuration, and commissioning of high-availability enterprise servers, backup storage arrays, and redundant power infrastructure for emergency disaster operations. The hardware supports geospatial disaster modeling applications and early warning dispatch systems during severe floods and cyclones. The architecture ensures 99.99% system availability during national relief mobilizations.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/DDM Picture 1.jpeg" alt="Emergency IT Commissioning">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">Completed</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Supply &amp; Commissioned IT Equipment</h3>
+            <p class="desc">High-availability enterprise servers, backup storage, and redundant power for DDM.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: Disaster Management</span><span><b>Enterprise</b></span></div>
+          </div>
+        </article>
+
+        <!-- ICT Infrastructure for EOC (DNCC) -->
+        <article class="project-card reveal-right reveal-delay-2" data-category="it"
+          data-title="Procurement of ICT Equipment for Emergency Operation Center(EOC) at DNCC"
+          data-tag="IT Infrastructure"
+          data-year="1 site"
+          data-client="DNCC"
+          data-value="Command Center"
+          data-location="Gulshan, Dhaka"
+          data-images="images/projects/DNCC1 Picture 1.jpeg,images/projects/DNCC1 Picture 2.jpeg"
+          data-desc="Complete procurement and deployment of enterprise server clusters, fiber-optic backbone connectivity, and emergency communication switches for the central DNCC EOC facility. The project provides secure data pipelines for emergency municipal databases and integrated sensor networks. Backup power architectures were installed to guarantee non-stop system availability throughout utility outages.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/DNCC1 Picture 1.jpeg" alt="DNCC EOC Systems">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">1 site</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">ICT Equipment for EOC at DNCC</h3>
+            <p class="desc">Enterprise server clusters, fiber-optic connectivity, and emergency switches for DNCC.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: DNCC</span><span><b>1 site</b></span></div>
+          </div>
+        </article>
+
+        <!-- Dual EOC Deployments (DSCC & SCC) -->
+        <article class="project-card reveal-right reveal-delay-3" data-category="it"
+          data-title="Procurement of ICT Equipment for Emergency Operation Center(EOC) at DSCC & SCC"
+          data-tag="IT Infrastructure"
+          data-year="2 sites"
+          data-client="DNCC / DSCC / SCC"
+          data-value="2 sites"
+          data-location="Dhaka South & Sylhet"
+          data-images="images/projects/SSC picture 1.jpeg"
+          data-desc="Simultaneous delivery of advanced ICT hardware, network switching infrastructure, and unified control consoles across Emergency Operation Centers in Dhaka South and Sylhet. This multi-city deployment standardizes emergency response workflows and establishes cross-municipality data synchronization for urban crisis management. Operators benefit from high-resolution multi-screen consoles and secure VoIP teleconferencing.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/SSC picture 1.jpeg" alt="Dual EOC Deployments">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2 sites</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">ICT Equipment for EOC at DSCC &amp; SCC</h3>
+            <p class="desc">Delivery of ICT hardware and control consoles across EOCs in Dhaka South and Sylhet.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: DSCC &amp; SCC</span><span><b>2 sites</b></span></div>
+          </div>
+        </article>
+
+        <!-- ICT Infrastructure for FSCD Command & Control Rooms -->
+        <article class="project-card reveal-right reveal-delay-1" data-category="it"
+          data-title="Procurement of ICT Equipment for Command and Control Room(CCR) at FSCD-Dhaka & FSCD-Sylhet"
+          data-tag="IT Infrastructure"
+          data-year="2 sites"
+          data-client="DNCC / FSCD"
+          data-value="2 sites"
+          data-location="FSCD Dhaka & FSCD Sylhet"
+          data-images="images/projects/DNCC1 Picture 2.jpeg"
+          data-desc="Implementation of real-time command, control, and communication (CCR) systems for the Fire Service and Civil Defence control hubs in Dhaka and Sylhet. The installation incorporates emergency dispatch terminals, GIS-based incident tracking servers, and ruggedized radio-over-IP gateways. The setup reduces emergency response dispatch latency during major urban fire incidents and rescue operations.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/DNCC1 Picture 2.jpeg" alt="FSCD Command Rooms">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2 sites</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">ICT for CCR at FSCD-Dhaka &amp; Sylhet</h3>
+            <p class="desc">Real-time command, control, and communication systems for Fire Service hubs.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: FSCD</span><span><b>2 sites</b></span></div>
+          </div>
+        </article>
+
+        <!-- NDRCC / NDMRTI Disaster Management ICT Package -->
+        <article class="project-card reveal-right reveal-delay-2" data-category="it"
+          data-title="Procurement of ICT Equipment for NDRCC / NDMRTI under DDM (Package URP-DNCC/G-1.15)"
+          data-tag="IT Infrastructure"
+          data-year="1 site"
+          data-client="DNCC / DDM"
+          data-value="1 site"
+          data-location="Dhaka"
+          data-images="images/projects/DDM Picture 1.jpeg"
+          data-desc="Delivery of specialized ICT equipment under the World Bank-assisted Urban Resilience Project for the National Disaster Response Coordination Center and Training Institute. The scope encompassed enterprise server virtualization, smart interactive classroom technology, and emergency database repositories. This infrastructure enhances national training capabilities and disaster response planning models.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/DDM Picture 1.jpeg" alt="NDRCC ICT Package">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">1 site</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">NDRCC / NDMRTI ICT Package (DDM)</h3>
+            <p class="desc">Specialized ICT equipment under the Urban Resilience Project for disaster response training.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: DNCC / DDM</span><span><b>1 site</b></span></div>
+          </div>
+        </article>
+
+        <!-- Tactical High-Speed Engine Patrol Boats -->
+        <article class="project-card reveal-right reveal-delay-3" data-category="security"
+          data-title="High Speed Engine Boat"
+          data-tag="Security / Defense Solutions"
+          data-year="6 units"
+          data-client="BGB"
+          data-value="6 units"
+          data-location="Riverine Borders"
+          data-images="images/projects/APC Picture 1.png"
+          data-desc="Supply and marine outfitting of tactical high-speed patrol craft built with reinforced marine-grade aluminum hulls and high-thrust outboard propulsion. Engineered for riverine border patrols and counter-smuggling interdictions, each vessel features navigational radar, night-search illumination, and weapon mount points. The fleet provides rapid interception capabilities across shallow and turbulent waterways.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/APC Picture 1.png" alt="Tactical Patrol Boats">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense</span><span class="mono muted" style="font-size:.75rem;">6 units</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">High Speed Engine Patrol Boat</h3>
+            <p class="desc">Marine outfitting of high-speed patrol craft with navigational radar and outboard propulsion.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: BGB</span><span><b>6 units</b></span></div>
+          </div>
+        </article>
+
+        <!-- Armored Personnel Carrier (APC) -->
+        <article class="project-card reveal-right reveal-delay-1" data-category="security"
+          data-title="Armored Personnel Carrier(APC)"
+          data-tag="Security / Defense Solutions"
+          data-year="2020"
+          data-client="BGB"
+          data-value="14 pcs"
+          data-location="Border Frontlines"
+          data-images="images/projects/APC Picture 1.png"
+          data-desc="Delivery and technical commissioning of 4x4 heavy-duty Armored Personnel Carriers engineered to transport combat personnel through hostile operational environments. The vehicles feature certified ballistic steel armor, blast-mitigating floor designs, run-flat tires, and automated fire suppression systems. They provide mobile protection during border tensions, counter-insurgency tasks, and anti-smuggling sweeps.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/APC Picture 1.png" alt="Armored Personnel Carrier">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag tag-security">Security / Defense</span><span class="mono muted" style="font-size:.75rem;">2020</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Armored Personnel Carrier (APC)</h3>
+            <p class="desc">4x4 heavy-duty Armored Personnel Carriers with certified ballistic steel armor.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: BGB</span><span><b>14 pcs</b></span></div>
+          </div>
+        </article>
+
+        <!-- Public Address (PA) Systems -->
+        <article class="project-card reveal-right reveal-delay-2" data-category="it"
+          data-title="Procurement of PA System"
+          data-tag="IT Infrastructure"
+          data-year="2026"
+          data-client="Ministry of Home and Affairs"
+          data-value="Enterprise Setup"
+          data-location="Dhaka"
+          data-images="images/projects/PA System Picture 1.jpeg"
+          data-desc="Engineering and commissioning of zoned IP-based Public Address and Voice Alarm systems across administrative ministry complexes. The installation provides clear voice notifications, scheduled operational chimes, and automatic emergency override broadcasts integrated with fire alarm panels. The audio network operates over standard IP infrastructures for centralized audio management.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/PA System Picture 1.jpeg" alt="PA Systems">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2026</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Procurement of PA System</h3>
+            <p class="desc">Zoned IP-based Public Address and emergency evacuation broadcast systems.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: Ministry of Home Affairs</span><span><b>Enterprise</b></span></div>
+          </div>
+        </article>
+
+        <!-- Interactive Flat Panel Displays -->
+        <article class="project-card reveal-right reveal-delay-3" data-category="it"
+          data-title="Interactive Flat Panel"
+          data-tag="IT Infrastructure"
+          data-year="2026"
+          data-client="Bangladesh Police"
+          data-value="Command Briefing Units"
+          data-location="Police Academies & Boardrooms"
+          data-images="images/projects/IFP Picture 1.jpeg,images/projects/IFP Picture 2.jpeg"
+          data-desc="Deployment of 4K ultra-high-definition interactive multi-touch displays across regional police briefing rooms, training academies, and executive boardrooms. The panels feature wireless content sharing, multi-user digital whiteboarding, and integrated videoconferencing codecs for high-level tactical coordination. The devices improve interactive training delivery and operational case discussions.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/IFP Picture 1.jpeg" alt="Interactive Flat Panels">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2026</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Interactive Flat Panel</h3>
+            <p class="desc">4K UHD interactive multi-touch displays across police briefing rooms and academies.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: Bangladesh Police</span><span><b>4K Displays</b></span></div>
+          </div>
+        </article>
+
+        <!-- All-in-One Workstations BUP -->
+        <article class="project-card reveal-right reveal-delay-1" data-category="it"
+          data-title="AIO Computers, Network Switch, Wireless Access Point, SFP and IT Accessories for Computer Lab"
+          data-tag="IT Infrastructure"
+          data-year="2026"
+          data-client="BUP & Ministry of Home Affairs"
+          data-value="300 Units / Complete Lab"
+          data-location="Mirpur Cantonment, Dhaka"
+          data-images="images/projects/BUP Lab Picture 1.jpeg,images/projects/BUP Lab Picture 2.jpeg"
+          data-desc="Turnkey design and outfitting of modern computing laboratories utilizing high-performance All-in-One enterprise desktop computers, managed gigabit switches, and Wi-Fi 6 access points. The network layout incorporates fiber optic SFP uplinks, structured Cat6 cabling, and server rack installations to support high-density computing loads. It provides reliable processing power for academic research and software development classes.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/BUP Lab Picture 1.jpeg" alt="BUP Lab Workstations">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2026</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">AIO Computers &amp; IT Lab Accessories</h3>
+            <p class="desc">Modern computing laboratories utilizing All-in-One desktop units and managed switching.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: BUP &amp; MOHA</span><span><b>300 Units</b></span></div>
+          </div>
+        </article>
+
+        <!-- Strata Tier-III Data Center -->
+        <article class="project-card reveal-right reveal-delay-2" data-category="it"
+          data-title="Strata Tier-III Data Center"
+          data-tag="IT Infrastructure"
+          data-year="2024"
+          data-client="Enterprise Cloud Client"
+          data-value="Tier III Facility"
+          data-location="Dhaka"
+          data-images="images/projects/DNCC1 Picture 1.jpeg"
+          data-desc="Ground-up build of a 4,200 sqft enterprise data center with N+1 redundancy, precision cooling infrastructure, and uninterruptible power supply setups.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/DNCC1 Picture 1.jpeg" alt="Strata Data Center">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2024</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Strata Tier-III Data Center</h3>
+            <p class="desc">Ground-up build of a 4,200 sqft enterprise data center with N+1 redundancy.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Location: Dhaka</span><span><b>Tier III</b></span></div>
+          </div>
+        </article>
+
+        <!-- Enterprise Network Rollout -->
+        <article class="project-card reveal-right reveal-delay-3" data-category="it"
+          data-title="Enterprise Network Rollout & Cyber Security"
+          data-tag="IT Infrastructure"
+          data-year="2023"
+          data-client="Industrial & Banking Clients (FSIB)"
+          data-value="12 Integrated Sites"
+          data-location="Multi-Site"
+          data-images="images/projects/BUP Lab Picture 1.jpeg"
+          data-desc="Multi-site network architecture, cybersecurity solutions integration, and structured cabling infrastructure deployed across industrial and financial clients with centralized routing and firewall policies.">
+          <div class="project-card-img-wrap">
+            <img src="images/projects/BUP Lab Picture 1.jpeg" alt="Enterprise Network Rollout">
+          </div>
+          <div class="project-card-body">
+            <div class="pc-meta"><span class="tag" style="color:var(--text-100);">IT Infrastructure</span><span class="mono muted" style="font-size:.75rem;">2023</span></div>
+            <h3 class="h3" style="font-size:1.15rem;">Enterprise Network Rollout</h3>
+            <p class="desc">Multi-site network architecture and cabling infrastructure for enterprise facilities.</p>
+            <span class="read-more-btn">Read More &rarr;</span>
+            <div class="project-card-foot"><span>Client: Enterprise / FSIB</span><span><b>12 sites</b></span></div>
           </div>
         </article>
 
@@ -371,6 +1136,50 @@
   </section>
 
 </main>
+
+<!-- ============================================================
+     PROJECT DETAILS MODAL POPUP
+     ============================================================ -->
+<div class="modal-overlay" id="projectModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-container">
+    <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close dialog">&times;</button>
+    
+    <!-- Multi-Image Slider -->
+    <div class="modal-gallery">
+      <img id="modalImg" src="" alt="Project detail view">
+      <button class="gallery-nav-btn gallery-prev" id="galleryPrev" aria-label="Previous image">&#10094;</button>
+      <button class="gallery-nav-btn gallery-next" id="galleryNext" aria-label="Next image">&#10095;</button>
+    </div>
+    <div class="gallery-dots" id="galleryDots"></div>
+
+    <!-- Modal Content -->
+    <div class="modal-body">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <span class="tag" id="modalTag">Tag</span>
+        <span class="mono" id="modalYear" style="color:var(--text-500); font-size:.85rem;">Year</span>
+      </div>
+
+      <h2 class="h2" id="modalTitle" style="font-size:1.6rem; margin-bottom:14px;">Project Title</h2>
+      <p id="modalDesc" style="font-size:1rem; line-height:1.65; color:var(--text-300);">Project full description.</p>
+
+      <!-- Meta Grid -->
+      <div class="modal-meta-grid">
+        <div class="modal-meta-item">
+          <div class="meta-label">Client / Agency</div>
+          <div class="meta-val" id="modalClient">Client Name</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="meta-label">Quantity / Scope</div>
+          <div class="meta-val" id="modalValue" style="color:var(--amber-500);">Value Scope</div>
+        </div>
+        <div class="modal-meta-item">
+          <div class="meta-label">Deployment Location</div>
+          <div class="meta-val" id="modalLocation">Location</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer class="site-footer">
   <div class="container">
@@ -422,8 +1231,8 @@
 
 <script src="js/main.js"></script>
 <script>
-  /* Observer for Left & Right Slide Animations */
   document.addEventListener('DOMContentLoaded', function () {
+    /* 1. Scroll Reveal Observer */
     var slideEls = document.querySelectorAll('.reveal-left, .reveal-right');
     if ('IntersectionObserver' in window && slideEls.length) {
       var slideObs = new IntersectionObserver(function (entries) {
@@ -433,11 +1242,141 @@
             slideObs.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.15 });
+      }, { threshold: 0.1 });
       slideEls.forEach(function (el) { slideObs.observe(el); });
     } else {
       slideEls.forEach(function (el) { el.classList.add('is-visible'); });
     }
+
+    /* 2. Self-Contained Filter Bar Logic */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', function () {
+        filterBtns.forEach(b => {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        this.classList.add('is-active');
+        this.setAttribute('aria-selected', 'true');
+
+        const filter = this.getAttribute('data-filter');
+
+        projectCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    /* 3. Robust Event-Delegated Modal Popup Logic */
+    const modal = document.getElementById('projectModal');
+    const closeBtn = document.getElementById('modalCloseBtn');
+    const modalImg = document.getElementById('modalImg');
+    const prevBtn = document.getElementById('galleryPrev');
+    const nextBtn = document.getElementById('galleryNext');
+    const dotsContainer = document.getElementById('galleryDots');
+
+    let currentImages = [];
+    let currentImgIdx = 0;
+
+    function updateGalleryImage() {
+      if (!currentImages.length) return;
+      modalImg.src = currentImages[currentImgIdx];
+      
+      const dots = dotsContainer.querySelectorAll('.gallery-dot');
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('is-active', idx === currentImgIdx);
+      });
+    }
+
+    function openModal(card) {
+      document.getElementById('modalTitle').textContent = card.dataset.title || '';
+      document.getElementById('modalDesc').textContent = card.dataset.desc || '';
+      document.getElementById('modalTag').textContent = card.dataset.tag || '';
+      document.getElementById('modalYear').textContent = card.dataset.year || '';
+      document.getElementById('modalClient').textContent = card.dataset.client || 'N/A';
+      document.getElementById('modalValue').textContent = card.dataset.value || 'N/A';
+      document.getElementById('modalLocation').textContent = card.dataset.location || 'N/A';
+
+      currentImages = (card.dataset.images || '').split(',').map(s => s.trim()).filter(Boolean);
+      currentImgIdx = 0;
+
+      dotsContainer.innerHTML = '';
+      if (currentImages.length > 1) {
+        prevBtn.style.display = 'flex';
+        nextBtn.style.display = 'flex';
+        dotsContainer.style.display = 'flex';
+        
+        currentImages.forEach((_, i) => {
+          const dot = document.createElement('div');
+          dot.className = 'gallery-dot' + (i === 0 ? ' is-active' : '');
+          dot.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentImgIdx = i;
+            updateGalleryImage();
+          });
+          dotsContainer.appendChild(dot);
+        });
+      } else {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+        dotsContainer.style.display = 'none';
+      }
+
+      updateGalleryImage();
+
+      modal.classList.add('is-active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('is-active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelector('.project-grid').addEventListener('click', function(e) {
+      const card = e.target.closest('.project-card');
+      if (card) {
+        openModal(card);
+      }
+    });
+
+    closeBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      closeModal();
+    });
+
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+        closeModal();
+      }
+    });
+
+    prevBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      currentImgIdx = (currentImgIdx - 1 + currentImages.length) % currentImages.length;
+      updateGalleryImage();
+    });
+
+    nextBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      currentImgIdx = (currentImgIdx + 1) % currentImages.length;
+      updateGalleryImage();
+    });
   });
 </script>
 </body>
