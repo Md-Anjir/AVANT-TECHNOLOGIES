@@ -104,22 +104,78 @@
   .svc-summary-card a.svc-link .arrow{ transition:transform .3s var(--ease); }
   .svc-summary-card:hover a.svc-link .arrow{ transform:translateX(6px); }
 
-  /* ---- Projects Infinite Portrait Slider ---- */
-  .project-slider-viewport { overflow: hidden; width: 100%; padding-block: 20px; }
-  .project-slider-track { display: flex; align-items: center; gap: 24px; width: max-content; animation: image-chain-scroll 35s linear infinite; }
-  .project-slider-track:hover { animation-play-state: paused; }
-  
-  .project-slide-img { 
-    width: 260px; 
-    height: 380px; 
-    aspect-ratio: 3 / 4;
-    object-fit: cover; 
-    border-radius: var(--radius-md); 
-    border: 1px solid var(--line-700); 
-    transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
-    flex-shrink: 0;
+  /* ---- Projects Infinite Portrait Slider (upgraded) ---- */
+  .project-slider-viewport {
+    overflow: hidden;
+    width: 100%;
+    padding-block: 32px;
+    /* fade the marquee out at both edges instead of a hard cut-off */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
   }
-  .project-slide-img:hover { transform: translateY(-8px) scale(1.02); border-color: var(--amber-500); box-shadow: 0 12px 28px rgba(0,0,0,0.12); }
+  .project-slider-track {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    width: max-content;
+    animation: image-chain-scroll 90s linear infinite;
+  }
+  .project-slider-track.is-paused,
+  .project-slider-track:hover { animation-play-state: paused; }
+
+  /* organic "photo wall" rhythm — alternate slides sit a little higher/lower */
+  .project-slide:nth-child(3n+2) { transform: translateY(-16px); }
+  .project-slide:nth-child(3n)   { transform: translateY(10px); }
+
+  .project-slide {
+    position: relative;
+    flex-shrink: 0;
+    width: 260px;
+    height: 380px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--line-700);
+    background: var(--panel-700);
+    box-shadow: 0 2px 10px rgba(32,42,51,.04);
+    transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s cubic-bezier(.22,1,.36,1), border-color .5s var(--ease);
+  }
+  .project-slide:hover {
+    transform: translateY(-14px) scale(1.035) !important;
+    border-color: var(--amber-500);
+    box-shadow: 0 26px 44px rgba(32,42,51,.16);
+    z-index: 3;
+  }
+
+  .project-slide-img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+    transition: transform .7s cubic-bezier(.22,1,.36,1), filter .5s var(--ease);
+  }
+  .project-slide:hover .project-slide-img { transform: scale(1.09); }
+
+  /* caption overlay — slides up on hover/focus, label pulled from the image's alt text */
+  .project-slide-caption {
+    position: absolute; inset: auto 0 0 0;
+    padding: 34px 18px 16px;
+    background: linear-gradient(180deg, transparent 0%, rgba(20,26,32,.82) 78%);
+    transform: translateY(100%);
+    transition: transform .45s cubic-bezier(.22,1,.36,1);
+    pointer-events: none;
+  }
+  .project-slide:hover .project-slide-caption,
+  .project-slide:focus-within .project-slide-caption { transform: translateY(0); }
+  .project-slide-caption .psc-line {
+    width: 26px; height: 2px; background: var(--amber-400); margin-bottom: 8px;
+    transform: scaleX(0); transform-origin: left; transition: transform .5s .05s var(--ease);
+  }
+  .project-slide:hover .project-slide-caption .psc-line { transform: scaleX(1); }
+  .project-slide-caption span {
+    display: block; color: #fff; font-family: var(--font-mono); font-size: .76rem;
+    letter-spacing: .03em; line-height: 1.35;
+  }
 
   @keyframes image-chain-scroll {
     from { transform: translateX(0); }
@@ -213,8 +269,9 @@
     .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 32px; padding-top: 24px; }
     .hero-stat .num { font-size: 1.6rem; }
     .card-image-wrapper { height: 200px; }
-    .project-slide-img { width: 210px; height: 300px; }
-    .project-slider-track { gap: 16px; animation-duration: 28s; }
+    .project-slide-img { width: 100%; height: 100%; }
+    .project-slide { width: 210px; height: 300px; }
+    .project-slider-track { gap: 16px; }
     .cap-card { padding: 24px; }
     .clients-track { gap: 40px; }
     .clients-track img { height: 62px; }
@@ -675,6 +732,67 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+  /* ============================================================
+     PROJECT GALLERY — seamless marquee + hover captions
+     Runs once on load: wraps each <img> in a bordered card with a
+     caption pulled from its alt text, duplicates the strip so the
+     scroll loop never visibly jumps, and sets the scroll speed to
+     a constant pace no matter how many photos are in the list.
+     ============================================================ */
+  document.addEventListener('DOMContentLoaded', function () {
+    var track = document.getElementById('project-gallery-track');
+    if (!track) return;
+
+    var images = Array.prototype.slice.call(track.querySelectorAll('.project-slide-img'));
+    if (!images.length) return;
+
+    var cleanLabel = function (alt) {
+      return (alt || 'Project')
+        .replace(/\s*(picture|image|photo)\s*\d*\s*$/i, '')
+        .trim() || 'Project';
+    };
+
+    /* Wrap every image in a card + gradient caption overlay */
+    images.forEach(function (img) {
+      var wrap = document.createElement('div');
+      wrap.className = 'project-slide';
+
+      var caption = document.createElement('div');
+      caption.className = 'project-slide-caption';
+      caption.innerHTML = '<span class="psc-line"></span><span>' + cleanLabel(img.getAttribute('alt')) + '</span>';
+
+      img.parentNode.insertBefore(wrap, img);
+      wrap.appendChild(img);
+      wrap.appendChild(caption);
+      wrap.setAttribute('tabindex', '0');
+    });
+
+    /* Duplicate the whole strip once so translateX(-50%) loops seamlessly */
+    var originalSlides = Array.prototype.slice.call(track.children);
+    originalSlides.forEach(function (slide) {
+      var clone = slide.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+
+    /* Calibrate scroll speed so the pace stays constant regardless of photo count */
+    var PIXELS_PER_SECOND = 100;
+    requestAnimationFrame(function () {
+      var halfWidth = track.scrollWidth / 2;
+      var duration = Math.max(halfWidth / PIXELS_PER_SECOND, 20);
+      track.style.animationDuration = duration + 's';
+    });
+
+    /* Tap-to-pause for touch devices (hover doesn't apply there) */
+    track.addEventListener('click', function (e) {
+      if (!('ontouchstart' in window)) return;
+      if (e.target.closest('.project-slide')) {
+        track.classList.toggle('is-paused');
+      }
+    });
+  });
+</script>
 <script>
   /* Observer for Left & Right Slide Animations */
   document.addEventListener('DOMContentLoaded', function () {
