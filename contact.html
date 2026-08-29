@@ -148,12 +148,6 @@
           </div>
 
           <div class="form-field">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" placeholder="+880 1XXXXXXXXX" autocomplete="tel">
-            <span class="field-error"></span>
-          </div>
-
-          <div class="form-field">
             <label for="subject">Subject</label>
             <input type="text" id="subject" name="subject" placeholder="Renewable / Infrastructure / Defense Inquiry" required>
             <span class="field-error"></span>
@@ -296,9 +290,10 @@
         
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
         const message = document.getElementById('message').value.trim();
 
-        if (!name || !email || !message) {
+        if (!name || !email || !subject || !message) {
           formStatus.className = 'form-status is-error';
           formStatus.textContent = 'Please complete all required fields before sending.';
           return;
