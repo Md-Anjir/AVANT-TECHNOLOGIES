@@ -259,17 +259,4 @@ document.addEventListener('DOMContentLoaded', function () {
     el.textContent = new Date().getFullYear();
   });
 
-  document.querySelectorAll('.download-profile-btn').forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      var downloadLink = document.createElement('a');
-      downloadLink.href = 'assets/Avant_Technologies_Company_Profile.pdf';
-      downloadLink.download = 'Avant_Technologies_Company_Profile.pdf';
-      downloadLink.target = '_blank';
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-    });
-  });
-
 });
