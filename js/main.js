@@ -3,14 +3,15 @@
    Vanilla JS only. No dependencies, no build step.
    Sections:
      1. Mobile nav toggle
-     2. Header scroll state + active nav link
-     3. Smooth scroll for in-page anchors
-     4. Scroll reveal animations (IntersectionObserver)
-     5. Animated stat counters (home page)
-     6. Client logo strip — pause-on-hover marquee
-     7. Projects page — category filter tabs
-     8. Contact page — interactive form validation
-     9. Footer — current year
+     2. Dynamic Years Calculation & Counter Target
+     3. Header scroll state + active nav link
+     4. Smooth scroll for in-page anchors
+     5. Scroll reveal animations (IntersectionObserver)
+     6. Animated stat counters (home page)
+     7. Client logo strip — pause-on-hover marquee
+     8. Projects page — category filter tabs
+     9. Contact page — interactive form validation
+    10. Footer — current year & profile PDF download
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -40,7 +41,19 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ---------------------------------------------------------------------
-     2. HEADER SCROLL STATE + ACTIVE NAV LINK
+     2. DYNAMIC YEARS IN OPERATION (2015 ESTABLISHED)
+     --------------------------------------------------------------------- */
+  var establishedYear = 2015;
+  var currentYearVal = new Date().getFullYear();
+  var calculatedYears = currentYearVal - establishedYear;
+
+  var yearsCounter = document.querySelector('.years-counter');
+  if (yearsCounter) {
+    yearsCounter.setAttribute('data-target', calculatedYears);
+  }
+
+  /* ---------------------------------------------------------------------
+     3. HEADER SCROLL STATE + ACTIVE NAV LINK
      --------------------------------------------------------------------- */
   var header = document.querySelector('.site-header');
   var onScroll = function () {
@@ -59,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* ---------------------------------------------------------------------
-     3. SMOOTH SCROLL FOR IN-PAGE ANCHORS (e.g. "#services")
+     4. SMOOTH SCROLL FOR IN-PAGE ANCHORS (e.g. "#services")
      --------------------------------------------------------------------- */
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
@@ -75,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* ---------------------------------------------------------------------
-     4. SCROLL REVEAL ANIMATIONS
+     5. SCROLL REVEAL ANIMATIONS
      Add class="reveal" (optionally reveal-delay-1..4) to any element.
      --------------------------------------------------------------------- */
   var revealEls = document.querySelectorAll('.reveal');
@@ -95,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ---------------------------------------------------------------------
-     5. ANIMATED STAT COUNTERS
+     6. ANIMATED STAT COUNTERS
      Add class="counter" and data-target="1200" to a <span>.
      --------------------------------------------------------------------- */
   var counters = document.querySelectorAll('.counter');
@@ -134,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ---------------------------------------------------------------------
-     6. CLIENT LOGO STRIP — pause marquee on hover/focus
+     7. CLIENT LOGO STRIP — pause marquee on hover/focus
      --------------------------------------------------------------------- */
   var marquee = document.querySelector('.clients-track');
   if (marquee) {
@@ -143,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ---------------------------------------------------------------------
-     7. PROJECTS PAGE — CATEGORY FILTER TABS
+     8. PROJECTS PAGE — CATEGORY FILTER TABS
      --------------------------------------------------------------------- */
   var filterButtons = document.querySelectorAll('.filter-btn');
   var projectCards = document.querySelectorAll('.project-card');
@@ -178,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ---------------------------------------------------------------------
-     8. CONTACT PAGE — INTERACTIVE FORM VALIDATION
+     9. CONTACT PAGE — INTERACTIVE FORM VALIDATION
      --------------------------------------------------------------------- */
   var form = document.getElementById('contact-form');
   if (form) {
@@ -233,8 +246,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      /* No backend wired up — replace this block with a fetch() call to
-         your form handler / cPanel PHP mail script when ready. */
       var submitBtn = form.querySelector('button[type="submit"]');
       var originalText = submitBtn.textContent;
       submitBtn.textContent = 'Sending…';
@@ -253,10 +264,23 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ---------------------------------------------------------------------
-     9. FOOTER — CURRENT YEAR
+     10. FOOTER — CURRENT YEAR & PROFILE PDF DOWNLOAD
      --------------------------------------------------------------------- */
   document.querySelectorAll('.current-year').forEach(function (el) {
     el.textContent = new Date().getFullYear();
+  });
+
+  document.querySelectorAll('.download-profile-btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var downloadLink = document.createElement('a');
+      downloadLink.href = 'assets/Avant_Technologies_Company_Profile.pdf';
+      downloadLink.download = 'Avant_Technologies_Company_Profile.pdf';
+      downloadLink.target = '_blank';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    });
   });
 
 });

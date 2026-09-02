@@ -72,7 +72,7 @@
     100% { transform: scale(1.04) translate(2%, -2%); }
   }
 
-  .hero-stats{ display:grid; grid-template-columns:repeat(4, 1fr); gap:24px; margin-top:48px; padding-top:32px; border-top:1px solid var(--line-700); width:100%; }
+  .hero-stats{ display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-top:48px; padding-top:32px; border-top:1px solid var(--line-700); width:100%; }
   .hero-stat .num{ font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--amber-500); }
   .hero-stat .lab{ font-family:var(--font-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-500); margin-top:4px; }
 
@@ -326,12 +326,8 @@
           <div class="lab">Projects Delivered</div>
         </div>
         <div class="hero-stat">
-          <div class="num"><span class="counter" data-target="12">0</span></div>
+          <div class="num"><span class="counter years-counter" data-target="0">0</span></div>
           <div class="lab">Years in Operation</div>
-        </div>
-        <div class="hero-stat">
-          <div class="num"><span class="counter" data-target="100" data-suffix="M$">0</span></div>
-          <div class="lab">Total Project Value</div>
         </div>
         <div class="hero-stat">
           <div class="num"><span class="counter" data-target="99" data-suffix="%">0</span></div>
